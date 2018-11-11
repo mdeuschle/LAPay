@@ -12,11 +12,30 @@ class RootVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    var sampleData = ["Foo", "Bar"]
+    var payrolls = [Payroll]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        WebService.shared.dataSource(with: .departmentTitle) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case let .success(data):
+                    if let json = try? JSONDecoder().decode([Payroll].self, from: data) {
+                        self.payrolls = json
+                        print("JSON: \(json)")
+                    }
+                case let .failure(error?):
+                    print(error)
+                default:
+                    print("DEFAULT")
+                }
+            }
+        }
     }
     
     private func configureTableView() {
@@ -32,13 +51,13 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sampleData.count
+        return payrolls.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let _sampleData = sampleData[indexPath.row]
-        cell.textLabel?.text = _sampleData
+        let payroll = payrolls[indexPath.row]
+        cell.textLabel?.text = payroll.department_title
         return cell
     }
 }

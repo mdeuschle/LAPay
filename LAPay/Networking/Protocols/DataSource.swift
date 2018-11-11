@@ -9,6 +9,6 @@
 import Foundation
 
 protocol DataSource {
-    static func dataSource(with endpoint: Endpoint, completion: @escaping (Response<Data>) -> Void)
-    static func url(for endpoint: Endpoint) -> URL?
+    func dataSource(with endpoint: Endpoint, completion: @escaping (Response<Data>) -> Void)
+    func url(for endpoint: Endpoint) -> URL
 }
