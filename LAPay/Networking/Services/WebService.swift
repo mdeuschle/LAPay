@@ -32,6 +32,8 @@ struct WebService: DataSource {
         switch endpoint {
         case .departmentTitle:
             path = base
+        case .none:
+            path = base
         }
         guard let url = URL(string: path) else {
             fatalError("Could not compose a valid URL in \(#file).\(#function)")

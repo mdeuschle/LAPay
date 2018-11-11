@@ -19,6 +19,7 @@
 		A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B12197E366008BE11F /* DataSource.swift */; };
 		A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B32197E7BE008BE11F /* WebService.swift */; };
 		A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B52197EC81008BE11F /* Payroll.swift */; };
+		A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		A8E8C2B12197E366008BE11F /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		A8E8C2B32197E7BE008BE11F /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		A8E8C2B52197EC81008BE11F /* Payroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payroll.swift; sourceTree = "<group>"; };
+		A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E8C2B52197EC81008BE11F /* Payroll.swift */,
+				A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,8 +175,8 @@
 		A8E8C2AB2197E050008BE11F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A8E8C2B72198D885008BE11F /* Services */,
 				A8E8C2B02197E312008BE11F /* Protocols */,
-				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
 				A8E8C2AC2197E074008BE11F /* Response.swift */,
 				A8E8C2AE2197E23F008BE11F /* Endpoint.swift */,
 			);
@@ -186,6 +189,14 @@
 				A8E8C2B12197E366008BE11F /* DataSource.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A8E8C2B72198D885008BE11F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2AF2197E23F008BE11F /* Endpoint.swift in Sources */,
+				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,
 				A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */,
 			);

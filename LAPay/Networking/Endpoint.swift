@@ -9,5 +9,6 @@
 import Foundation
 
 enum Endpoint {
+    case none
     case departmentTitle
 }

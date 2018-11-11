@@ -15,24 +15,21 @@ class RootVC: UIViewController {
     var payrolls = [Payroll]() {
         didSet {
             tableView.reloadData()
+            print("COUNT: \(payrolls.count)")
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        WebService.shared.dataSource(with: .departmentTitle) { response in
+        fetchPayrolls()
+    }
+    
+    private func fetchPayrolls() {
+        PayrollStore.shared.fetchAll { json in
             DispatchQueue.main.async {
-                switch response {
-                case let .success(data):
-                    if let json = try? JSONDecoder().decode([Payroll].self, from: data) {
-                        self.payrolls = json
-                        print("JSON: \(json)")
-                    }
-                case let .failure(error?):
-                    print(error)
-                default:
-                    print("DEFAULT")
+                if let payrolls = json {
+                    self.payrolls = payrolls
                 }
             }
         }
@@ -57,7 +54,8 @@ extension RootVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let payroll = payrolls[indexPath.row]
-        cell.textLabel?.text = payroll.department_title
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = payroll.job_class_title
         return cell
     }
 }
