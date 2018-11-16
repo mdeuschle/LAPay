@@ -15,7 +15,6 @@ class RootVC: UIViewController {
     var payrolls = [Payroll]() {
         didSet {
             tableView.reloadData()
-            print("COUNT: \(payrolls.count)")
         }
     }
 
@@ -26,12 +25,18 @@ class RootVC: UIViewController {
     }
     
     private func fetchPayrolls() {
-        PayrollStore.shared.fetchAll { json in
-            DispatchQueue.main.async {
-                if let payrolls = json {
-                    self.payrolls = payrolls
+        let cachedPayrolls = Cache.loadPayrolls()
+        if cachedPayrolls.isEmpty {
+            PayrollStore.shared.fetchAll { json in
+                DispatchQueue.main.async {
+                    if let payrolls = json {
+                        self.payrolls = payrolls
+                        Cache.archive(payrolls: payrolls)
+                    }
                 }
             }
+        } else {
+            self.payrolls = cachedPayrolls
         }
     }
     
