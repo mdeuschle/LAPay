@@ -33,7 +33,7 @@ class RootVC: UIViewController {
                         self.payrolls = payrolls
                         Cache.archive(payrolls: payrolls)
                     } else {
-                        // TODO ERROR POPUP
+                        // TODO POPUP
                         print("DOWNLOAD ERROR")
                     }
                 }
