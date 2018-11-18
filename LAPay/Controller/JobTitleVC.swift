@@ -13,15 +13,11 @@ class JobTitleVC: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     var payrolls = [Payroll]()
-    var jobClassTitle: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-
     }
-
-
 }
 
 extension JobTitleVC: UITableViewDataSource {

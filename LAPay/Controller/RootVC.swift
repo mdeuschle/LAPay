@@ -12,20 +12,20 @@ class RootVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var jobClassTitles = [String]() {
+    private var departmentTitles = [String]() {
         didSet {
             tableView.reloadData()
         }
     }
     var payrolls = [Payroll]() {
         didSet {
-            var jobClassTitles = Set<String>()
+            var departmentTitles = Set<String>()
             payrolls.forEach { payroll in
-                if let jobClassTitle = payroll.job_class_title {
-                    jobClassTitles.insert(jobClassTitle)
+                if let departmentTitle = payroll.department_title {
+                    departmentTitles.insert(departmentTitle)
                 }
             }
-            self.jobClassTitles = Array(jobClassTitles).sorted()
+            self.departmentTitles = Array(departmentTitles).sorted()
         }
     }
 
@@ -66,14 +66,14 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jobClassTitles.count
+        return departmentTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RootCell", for: indexPath)
-        let jobClassTitle = jobClassTitles[indexPath.row]
+        let departmentTitle = departmentTitles[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = jobClassTitle
+        cell.textLabel?.text = departmentTitle
         return cell
     }
 }
@@ -83,7 +83,7 @@ extension RootVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let jobTitleVC = JobTitleVC(nibName: "JobTitleVC", bundle: nil)
-        jobTitleVC.payrolls = payrolls
+        jobTitleVC.payrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
