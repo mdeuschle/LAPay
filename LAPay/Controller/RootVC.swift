@@ -12,9 +12,20 @@ class RootVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    var payrolls = [Payroll]() {
+    private var jobClassTitles = [String]() {
         didSet {
             tableView.reloadData()
+        }
+    }
+    var payrolls = [Payroll]() {
+        didSet {
+            var jobClassTitles = Set<String>()
+            payrolls.forEach { payroll in
+                if let jobClassTitle = payroll.job_class_title {
+                    jobClassTitles.insert(jobClassTitle)
+                }
+            }
+            self.jobClassTitles = Array(jobClassTitles).sorted()
         }
     }
 
@@ -55,14 +66,14 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return payrolls.count
+        return jobClassTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let payroll = payrolls[indexPath.row]
+        let jobClassTitle = jobClassTitles[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = payroll.job_class_title
+        cell.textLabel?.text = jobClassTitle
         return cell
     }
 }
