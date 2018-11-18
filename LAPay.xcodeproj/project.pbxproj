@@ -20,6 +20,8 @@
 		A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B52197EC81008BE11F /* Payroll.swift */; };
 		A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */; };
 		A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2BA2198ED74008BE11F /* Cache.swift */; };
+		A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */; };
+		A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		A8E8C2B52197EC81008BE11F /* Payroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payroll.swift; sourceTree = "<group>"; };
 		A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollStore.swift; sourceTree = "<group>"; };
 		A8E8C2BA2198ED74008BE11F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleVC.swift; sourceTree = "<group>"; };
+		A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobTitleVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E8C2A92197D9CC008BE11F /* RootVC.swift */,
+				A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E8C2752197CB1E008BE11F /* Main.storyboard */,
+				A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E8C27C2197CB2B008BE11F /* LaunchScreen.storyboard in Resources */,
+				A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */,
 				A8E8C2792197CB2B008BE11F /* Assets.xcassets in Resources */,
 				A8E8C2772197CB1E008BE11F /* Main.storyboard in Resources */,
 			);
@@ -337,6 +344,7 @@
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,
+				A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */,
 				A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

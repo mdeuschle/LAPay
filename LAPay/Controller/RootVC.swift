@@ -70,7 +70,7 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RootCell", for: indexPath)
         let jobClassTitle = jobClassTitles[indexPath.row]
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = jobClassTitle
@@ -81,6 +81,9 @@ extension RootVC: UITableViewDataSource {
 extension RootVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Select")
+        tableView.deselectRow(at: indexPath, animated: true)
+        let jobTitleVC = JobTitleVC(nibName: "JobTitleVC", bundle: nil)
+        jobTitleVC.payrolls = payrolls
+        navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
