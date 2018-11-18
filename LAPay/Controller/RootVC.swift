@@ -24,8 +24,7 @@ class RootVC: UIViewController {
         fetchPayrolls()
     }
     
-    private func fetchPayrolls() {
-        
+    private func fetchPayrolls() {        
         if payrolls.isEmpty {
             PayrollStore.shared.fetchAll { json in
                 DispatchQueue.main.async {

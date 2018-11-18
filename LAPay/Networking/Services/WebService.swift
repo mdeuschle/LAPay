@@ -28,7 +28,7 @@ struct WebService: DataSource {
     
     func url(for endpoint: Endpoint) -> URL {
         let path: String
-        let base = "https://controllerdata.lacity.org/resource/k8wm-a9xd.json"
+        let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json"
         switch endpoint {
         case .departmentTitle:
             path = base
