@@ -12,7 +12,7 @@ struct PayrollStore {
     static let shared = PayrollStore()
     private init() {}
     func fetchAll(completion: @escaping ([Payroll]?) -> Void) {
-        WebService.shared.dataSource(with: .none) { response in
+        WebService.shared.dataSource() { response in
             switch response {
             case let .success(data):
                 if let json = try? JSONDecoder().decode([Payroll].self, from: data) {

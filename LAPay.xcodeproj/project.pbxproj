@@ -15,7 +15,6 @@
 		A8E8C2922197CB2C008BE11F /* LAPayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2912197CB2C008BE11F /* LAPayUITests.swift */; };
 		A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2A92197D9CC008BE11F /* RootVC.swift */; };
 		A8E8C2AD2197E074008BE11F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2AC2197E074008BE11F /* Response.swift */; };
-		A8E8C2AF2197E23F008BE11F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2AE2197E23F008BE11F /* Endpoint.swift */; };
 		A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B12197E366008BE11F /* DataSource.swift */; };
 		A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B32197E7BE008BE11F /* WebService.swift */; };
 		A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B52197EC81008BE11F /* Payroll.swift */; };
@@ -55,7 +54,6 @@
 		A8E8C2932197CB2C008BE11F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8E8C2A92197D9CC008BE11F /* RootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootVC.swift; sourceTree = "<group>"; };
 		A8E8C2AC2197E074008BE11F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		A8E8C2AE2197E23F008BE11F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		A8E8C2B12197E366008BE11F /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		A8E8C2B32197E7BE008BE11F /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		A8E8C2B52197EC81008BE11F /* Payroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payroll.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				A8E8C2B72198D885008BE11F /* Services */,
 				A8E8C2B02197E312008BE11F /* Protocols */,
 				A8E8C2AC2197E074008BE11F /* Response.swift */,
-				A8E8C2AE2197E23F008BE11F /* Endpoint.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -338,7 +335,6 @@
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
-				A8E8C2AF2197E23F008BE11F /* Endpoint.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,
 				A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */,

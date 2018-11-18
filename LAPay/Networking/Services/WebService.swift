@@ -10,11 +10,13 @@ import Foundation
 
 struct WebService: DataSource {
     static let shared = WebService()
+    private let urlString = "https://controllerdata.lacity.org/resource/969q-4gr3.json"
     private init() {}
     
-    func dataSource(with endpoint: Endpoint, completion: @escaping (Response<Data>) -> Void) {
-        let _url = url(for: endpoint)
-        let task = URLSession.shared.dataTask(with: _url) { data, _, error in
+    func dataSource(completion: @escaping (Response<Data>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            fatalError("Could not compose a valid URL in \(#file).\(#function)")}
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             let response: Response<Data>
             if let data = data {
                 response = .success(data)
@@ -24,20 +26,5 @@ struct WebService: DataSource {
             completion(response)
         }
         task.resume()
-    }
-    
-    func url(for endpoint: Endpoint) -> URL {
-        let path: String
-        let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json"
-        switch endpoint {
-        case .departmentTitle:
-            path = base
-        case .none:
-            path = base
-        }
-        guard let url = URL(string: path) else {
-            fatalError("Could not compose a valid URL in \(#file).\(#function)")
-        }
-        return url
     }
 }
