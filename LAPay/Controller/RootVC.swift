@@ -25,18 +25,21 @@ class RootVC: UIViewController {
     }
     
     private func fetchPayrolls() {
-        let cachedPayrolls = Cache.loadPayrolls()
-        if cachedPayrolls.isEmpty {
+        
+        if payrolls.isEmpty {
             PayrollStore.shared.fetchAll { json in
                 DispatchQueue.main.async {
                     if let payrolls = json {
                         self.payrolls = payrolls
                         Cache.archive(payrolls: payrolls)
+                    } else {
+                        // TODO ERROR POPUP
+                        print("DOWNLOAD ERROR")
                     }
                 }
             }
         } else {
-            self.payrolls = cachedPayrolls
+            self.payrolls = Cache.loadPayrolls()
         }
     }
     
