@@ -14,6 +14,11 @@ class JobTitleVC: UIViewController {
     
     var payrolls = [Payroll]()
     
+    private var sectionHeaders: [String] {
+        let jobClassTitles = payrolls.compactMap { $0.job_class_title }
+        return Array(Set(jobClassTitles)).sorted()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -23,11 +28,21 @@ class JobTitleVC: UIViewController {
 extension JobTitleVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionHeaders.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionHeaders[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return payrolls.count
+        var sectionPayrolls = [Payroll]()
+        for payroll in payrolls {
+            if sectionHeaders[section] == payroll.job_class_title {
+                sectionPayrolls.append(payroll)
+            }
+        }
+        return sectionPayrolls.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,3 +52,5 @@ extension JobTitleVC: UITableViewDataSource {
         return cell
     }
 }
+
+
