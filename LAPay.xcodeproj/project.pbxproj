@@ -22,6 +22,8 @@
 		A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2BA2198ED74008BE11F /* Cache.swift */; };
 		A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */; };
 		A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */; };
+		A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */; };
+		A8E8C2CA21A27E17008BE11F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C921A27E17008BE11F /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		A8E8C2BA2198ED74008BE11F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleVC.swift; sourceTree = "<group>"; };
 		A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobTitleVC.xib; sourceTree = "<group>"; };
+		A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleCell.swift; sourceTree = "<group>"; };
+		A8E8C2C921A27E17008BE11F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				A8E8C2A62197D996008BE11F /* Controller */,
 				A8E8C2AB2197E050008BE11F /* Networking */,
 				A8E8C2A52197D976008BE11F /* Resources */,
+				A8E8C2C821A27DDC008BE11F /* Extensions */,
 				A8E8C27D2197CB2B008BE11F /* Info.plist */,
 			);
 			path = LAPay;
@@ -165,6 +170,7 @@
 			children = (
 				A8E8C2752197CB1E008BE11F /* Main.storyboard */,
 				A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */,
+				A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +209,14 @@
 				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A8E8C2C821A27DDC008BE11F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A8E8C2C921A27E17008BE11F /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +352,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */,
+				A8E8C2CA21A27E17008BE11F /* String.swift in Sources */,
 				A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */,
+				A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */,
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,

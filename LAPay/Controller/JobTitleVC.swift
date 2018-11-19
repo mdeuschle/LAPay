@@ -21,7 +21,12 @@ class JobTitleVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         tableView.dataSource = self
+        tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
     }
 }
 
@@ -46,9 +51,11 @@ extension JobTitleVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else {
+            return UITableViewCell()
+        }
         let payroll = payrolls[indexPath.row]
-        cell.textLabel?.text = payroll.total_payments
+        cell.configure(with: payroll)
         return cell
     }
 }
