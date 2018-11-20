@@ -15,6 +15,7 @@ class JobTitleCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
+        self.textLabel?.numberOfLines = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,7 +23,7 @@ class JobTitleCell: UITableViewCell {
     }
     
     func configure(with payroll: Payroll) {
-        self.textLabel?.text = "Total Payments: \(payroll.total_payments?.dollars ?? "")"
-        self.detailTextLabel?.text = "Year: \(payroll.year ?? "")"
+        self.textLabel?.text = "\(payroll.job_class_title ?? "")"
+        self.detailTextLabel?.text = "\(payroll.total_payments?.dollars ?? "")"
     }
 }

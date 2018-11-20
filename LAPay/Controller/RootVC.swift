@@ -83,7 +83,10 @@ extension RootVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let jobTitleVC = JobTitleVC(nibName: "JobTitleVC", bundle: nil)
-        jobTitleVC.payrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
+        var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
+        filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
+        jobTitleVC.payrolls = filteredPayrolls
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
+

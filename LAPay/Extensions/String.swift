@@ -10,6 +10,13 @@ import Foundation
 
 extension String {
     var dollars: String {
-        return "$\(self)"
+        let double = Double(self)
+        let int = Int(double ?? 0)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value: int)) ?? ""
+        return "$" + formattedNumber
     }
 }
+
+
