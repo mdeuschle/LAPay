@@ -28,38 +28,46 @@ class RootVC: UIViewController {
             self.departmentTitles = Array(departmentTitles).sorted()
         }
     }
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         fetchPayrolls()
         title = "Department Title"
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func fetchPayrolls() {
         payrolls = Cache.loadPayrolls()
         if payrolls.isEmpty {
-            let spinner = UIActivityIndicatorView(style: .gray)
-            view.addSubview(spinner)
-            spinner.center = view.center
-            spinner.startAnimating()
-            PayrollStore.shared.fetchAll { json in
-                DispatchQueue.main.async {
-                    spinner.stopAnimating()
-                    if let payrolls = json {
-                        self.payrolls = payrolls
-                        Cache.archive(payrolls: payrolls)
-                    } else {
-                        Alert(viewController: self).show()
-                    }
-                }
-            }
+            refresh()
         }
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refresh() {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        view.addSubview(spinner)
+        spinner.center = view.center
+        spinner.startAnimating()
+        PayrollStore.shared.fetchAll { json in
+            DispatchQueue.main.async {
+                if let payrolls = json {
+                    self.payrolls = payrolls
+                    Cache.archive(payrolls: payrolls)
+                } else {
+                    Alert(viewController: self).show()
+                }
+                spinner.stopAnimating()
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
 }
 
