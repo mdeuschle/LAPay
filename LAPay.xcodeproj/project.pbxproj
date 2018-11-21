@@ -24,6 +24,7 @@
 		A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */; };
 		A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */; };
 		A8E8C2CA21A27E17008BE11F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C921A27E17008BE11F /* String.swift */; };
+		A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2CB21A52375008BE11F /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobTitleVC.xib; sourceTree = "<group>"; };
 		A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleCell.swift; sourceTree = "<group>"; };
 		A8E8C2C921A27E17008BE11F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		A8E8C2CB21A52375008BE11F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				A8E8C2752197CB1E008BE11F /* Main.storyboard */,
 				A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */,
 				A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */,
+				A8E8C2CB21A52375008BE11F /* Alert.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */,
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
+				A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,

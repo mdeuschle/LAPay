@@ -35,7 +35,8 @@ class RootVC: UIViewController {
         fetchPayrolls()
     }
     
-    private func fetchPayrolls() {        
+    private func fetchPayrolls() {
+        payrolls = Cache.loadPayrolls()
         if payrolls.isEmpty {
             PayrollStore.shared.fetchAll { json in
                 DispatchQueue.main.async {
@@ -43,14 +44,11 @@ class RootVC: UIViewController {
                         self.payrolls = payrolls
                         Cache.archive(payrolls: payrolls)
                     } else {
-                        // TODO POPUP
-                        print("DOWNLOAD ERROR")
+                        Alert(viewController: self).show()
                     }
                 }
             }
-        } else {
-            self.payrolls = Cache.loadPayrolls()
-        }
+        } 
     }
     
     private func configureTableView() {
