@@ -33,13 +33,19 @@ class RootVC: UIViewController {
         super.viewDidLoad()
         configureTableView()
         fetchPayrolls()
+        title = "Department Title"
     }
     
     private func fetchPayrolls() {
         payrolls = Cache.loadPayrolls()
         if payrolls.isEmpty {
+            let spinner = UIActivityIndicatorView(style: .gray)
+            view.addSubview(spinner)
+            spinner.center = view.center
+            spinner.startAnimating()
             PayrollStore.shared.fetchAll { json in
                 DispatchQueue.main.async {
+                    spinner.stopAnimating()
                     if let payrolls = json {
                         self.payrolls = payrolls
                         Cache.archive(payrolls: payrolls)
@@ -48,7 +54,7 @@ class RootVC: UIViewController {
                     }
                 }
             }
-        } 
+        }
     }
     
     private func configureTableView() {
