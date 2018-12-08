@@ -22,6 +22,7 @@ class JobTitleVC: UIViewController {
     
     private func configureTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
     }
 }
@@ -44,6 +45,14 @@ extension JobTitleVC: UITableViewDataSource {
         cell.configure(with: payroll)
         return cell
     }
+}
+
+extension JobTitleVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailVC(nibName: "DetailVC", bundle: nil)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }
 
 
