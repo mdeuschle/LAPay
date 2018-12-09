@@ -27,6 +27,7 @@
 		A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2CB21A52375008BE11F /* Alert.swift */; };
 		A8E8C31521B4BD91008BE11F /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C31321B4BD91008BE11F /* DetailVC.swift */; };
 		A8E8C31621B4BD91008BE11F /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C31421B4BD91008BE11F /* DetailVC.xib */; };
+		A8E8C31C21BDBB97008BE11F /* PayrollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C31B21BDBB97008BE11F /* PayrollService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		A8E8C2CB21A52375008BE11F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A8E8C31321B4BD91008BE11F /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		A8E8C31421B4BD91008BE11F /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
+		A8E8C31B21BDBB97008BE11F /* PayrollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
+				A8E8C31B21BDBB97008BE11F /* PayrollService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E8C31C21BDBB97008BE11F /* PayrollService.swift in Sources */,
 				A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */,
 				A8E8C2CA21A27E17008BE11F /* String.swift in Sources */,
 				A8E8C31521B4BD91008BE11F /* DetailVC.swift in Sources */,

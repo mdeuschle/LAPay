@@ -19,13 +19,7 @@ class RootVC: UIViewController {
     }
     var payrolls = [Payroll]() {
         didSet {
-            var departmentTitles = Set<String>()
-            payrolls.forEach { payroll in
-                if let departmentTitle = payroll.department_title {
-                    departmentTitles.insert(departmentTitle)
-                }
-            }
-            self.departmentTitles = Array(departmentTitles).sorted()
+            self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
         }
     }
     private let refreshControl = UIRefreshControl()
@@ -82,8 +76,9 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RootCell", for: indexPath)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "RootCell")
         let departmentTitle = departmentTitles[indexPath.row]
+        cell.accessoryType = .disclosureIndicator
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = departmentTitle
         return cell
