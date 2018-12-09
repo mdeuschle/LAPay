@@ -18,5 +18,7 @@ class DetailVC: UIViewController {
         title = "Details"
 
     }
+    
+    
 
 }

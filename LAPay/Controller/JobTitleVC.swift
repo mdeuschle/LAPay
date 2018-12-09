@@ -12,12 +12,21 @@ class JobTitleVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    var payrolls = [Payroll]()
+    private var payrolls = [Payroll]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        title = "Total Payments"
+        title = "Title & Total Payments"
+    }
+    
+    init(payrolls: [Payroll]) {
+        super.init(nibName: "JobTitleVC", bundle: nil)
+        self.payrolls = payrolls
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configureTableView() {
@@ -50,6 +59,8 @@ extension JobTitleVC: UITableViewDataSource {
 extension JobTitleVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailVC(nibName: "DetailVC", bundle: nil)
+        let payroll = payrolls[indexPath.row]
+
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
