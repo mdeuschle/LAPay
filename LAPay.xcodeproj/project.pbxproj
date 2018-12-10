@@ -180,8 +180,8 @@
 				A8E8C2752197CB1E008BE11F /* Main.storyboard */,
 				A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */,
 				A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */,
-				A8E8C2CB21A52375008BE11F /* Alert.swift */,
 				A8E8C31421B4BD91008BE11F /* DetailVC.xib */,
+				A8E8C2CB21A52375008BE11F /* Alert.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

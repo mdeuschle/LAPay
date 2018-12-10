@@ -14,8 +14,8 @@ class JobTitleCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        accessoryType = .disclosureIndicator
-        textLabel?.adjustsFontSizeToFitWidth = true
+        textLabel?.numberOfLines = 0
+        detailTextLabel?.numberOfLines = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,9 +23,14 @@ class JobTitleCell: UITableViewCell {
     }
     
     func configure(with payroll: Payroll) {
-        let jobClassTitle = payroll.job_class_title ?? ""
-        let totalPayments = payroll.total_payments ?? ""
-        textLabel?.text = jobClassTitle
-        detailTextLabel?.text = "\(totalPayments.dollars)"
+        accessoryType = .disclosureIndicator
+        textLabel?.text = payroll.job_class_title
+        detailTextLabel?.text = payroll.total_payments?.dollars
+    }
+    
+    func configure(with payrollDetail: PayrollDetail) {
+        accessoryType = .none
+        textLabel?.text = payrollDetail.title
+        detailTextLabel?.text = payrollDetail.value
     }
 }

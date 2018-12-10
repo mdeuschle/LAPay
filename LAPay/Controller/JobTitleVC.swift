@@ -58,12 +58,10 @@ extension JobTitleVC: UITableViewDataSource {
 
 extension JobTitleVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailVC(nibName: "DetailVC", bundle: nil)
         let payroll = payrolls[indexPath.row]
-
+        let detailVC = DetailVC(payroll: payroll)
         navigationController?.pushViewController(detailVC, animated: true)
     }
-    
 }
 
 
