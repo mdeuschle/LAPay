@@ -28,8 +28,8 @@ class JobTitleCell: UITableViewCell {
         detailTextLabel?.text = payroll.total_payments?.dollars
     }
     
-    func configure(with payrollDetail: PayrollDetail) {
-        accessoryType = .none
+    func configure(with payrollDetail: PayrollDetail, indexPath: IndexPath) {
+        accessoryType = indexPath.row == 0 ? .detailButton : .none
         textLabel?.text = payrollDetail.title
         detailTextLabel?.text = payrollDetail.value
     }

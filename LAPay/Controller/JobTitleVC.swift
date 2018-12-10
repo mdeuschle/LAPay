@@ -17,7 +17,7 @@ class JobTitleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        title = "Title & Total Payments"
+        title = "Title & Total Earnings"
     }
     
     init(payrolls: [Payroll]) {
@@ -58,6 +58,7 @@ extension JobTitleVC: UITableViewDataSource {
 
 extension JobTitleVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let payroll = payrolls[indexPath.row]
         let detailVC = DetailVC(payroll: payroll)
         navigationController?.pushViewController(detailVC, animated: true)

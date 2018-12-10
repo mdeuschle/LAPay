@@ -86,7 +86,6 @@ extension RootVC: UITableViewDataSource {
 }
 
 extension RootVC: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }

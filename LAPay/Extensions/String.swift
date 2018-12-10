@@ -19,4 +19,14 @@ extension String {
     }
 }
 
+extension String {
+    var percent: String? {
+        if let _double = Double(self) {
+            return "\(Int(_double * 10000))%"
+        } else {
+            return nil
+        }
+    }
+}
+
 

@@ -48,10 +48,7 @@ extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else { return UITableViewCell() }
         let payrollDetail = payroll.payrollDetails[indexPath.row]
-        cell.configure(with: payrollDetail)
-        if indexPath.row == 0 {
-            cell.accessoryType = .detailButton
-        }
+        cell.configure(with: payrollDetail, indexPath: indexPath)
         return cell
     }
 }
