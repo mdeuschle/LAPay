@@ -61,5 +61,9 @@ extension DetailVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let pdfView = PDFVC()
+        pdfView.jobClassLink = payroll.job_class_link
+        navigationController?.pushViewController(pdfView, animated: false)
+        print(pdfView.jobClassLink)
     }
 }

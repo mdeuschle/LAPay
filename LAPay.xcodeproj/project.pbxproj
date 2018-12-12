@@ -29,6 +29,7 @@
 		A8E8C31621B4BD91008BE11F /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C31421B4BD91008BE11F /* DetailVC.xib */; };
 		A8E8C31C21BDBB97008BE11F /* PayrollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C31B21BDBB97008BE11F /* PayrollService.swift */; };
 		A8E8C32021C0B26A008BE11F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C31F21C0B26A008BE11F /* DetailCell.swift */; };
+		A8E8C32221C0B844008BE11F /* PDFVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C32121C0B844008BE11F /* PDFVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A8E8C31421B4BD91008BE11F /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
 		A8E8C31B21BDBB97008BE11F /* PayrollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollService.swift; sourceTree = "<group>"; };
 		A8E8C31F21C0B26A008BE11F /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		A8E8C32121C0B844008BE11F /* PDFVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				A8E8C2A92197D9CC008BE11F /* RootVC.swift */,
 				A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */,
 				A8E8C31321B4BD91008BE11F /* DetailVC.swift */,
+				A8E8C32121C0B844008BE11F /* PDFVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */,
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
+				A8E8C32221C0B844008BE11F /* PDFVC.swift in Sources */,
 				A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
