@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--RootVC-->
+        <!-- -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RootVC" customModule="LAPay" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,7 +51,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Xhn-vt-ZCB"/>
+                    <navigationItem key="navigationItem" title=" " id="Xhn-vt-ZCB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="hQx-Nc-tp1"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="7Fw-LJ-Hpn" id="6os-fd-UQd"/>
                     </connections>

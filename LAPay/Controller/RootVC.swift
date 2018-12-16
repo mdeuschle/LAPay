@@ -22,14 +22,12 @@ class RootVC: UIViewController {
             self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
         }
     }
-    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         fetchPayrolls()
         title = "Department Title"
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func fetchPayrolls() {
@@ -42,7 +40,6 @@ class RootVC: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.refreshControl = refreshControl
     }
     
     @objc private func refresh() {
@@ -59,7 +56,6 @@ class RootVC: UIViewController {
                     Alert(viewController: self).show()
                 }
                 spinner.stopAnimating()
-                self.refreshControl.endRefreshing()
             }
         }
     }

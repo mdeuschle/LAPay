@@ -18,6 +18,7 @@ class DetailVC: UIViewController {
         super.viewDidLoad()
         title = "Details"
         configureTableView()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     init(payroll: Payroll) {
@@ -63,7 +64,7 @@ extension DetailVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let pdfView = PDFVC()
         pdfView.jobClassLink = payroll.job_class_link
+        pdfView.view.backgroundColor = .white
         navigationController?.pushViewController(pdfView, animated: false)
-        print(pdfView.jobClassLink)
     }
 }

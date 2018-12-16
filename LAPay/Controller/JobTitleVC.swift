@@ -17,7 +17,9 @@ class JobTitleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        title = "Title & Total Earnings"
+        title = "Job Title & Total Earnings"
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     init(payrolls: [Payroll]) {
