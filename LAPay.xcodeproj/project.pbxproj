@@ -21,7 +21,6 @@
 		A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */; };
 		A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2BA2198ED74008BE11F /* Cache.swift */; };
 		A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */; };
-		A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */; };
 		A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */; };
 		A8E8C2CA21A27E17008BE11F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C921A27E17008BE11F /* String.swift */; };
 		A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2CB21A52375008BE11F /* Alert.swift */; };
@@ -70,7 +69,6 @@
 		A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollStore.swift; sourceTree = "<group>"; };
 		A8E8C2BA2198ED74008BE11F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleVC.swift; sourceTree = "<group>"; };
-		A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobTitleVC.xib; sourceTree = "<group>"; };
 		A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleCell.swift; sourceTree = "<group>"; };
 		A8E8C2C921A27E17008BE11F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A8E8C2CB21A52375008BE11F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				A8E8C2752197CB1E008BE11F /* Main.storyboard */,
-				A8E8C2C121A222D7008BE11F /* JobTitleVC.xib */,
 				A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */,
 				A8E8C31421B4BD91008BE11F /* DetailVC.xib */,
 				A8E8C31F21C0B26A008BE11F /* DetailCell.swift */,
@@ -342,7 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E8C27C2197CB2B008BE11F /* LaunchScreen.storyboard in Resources */,
-				A8E8C2C321A222D7008BE11F /* JobTitleVC.xib in Resources */,
 				A8E8C2792197CB2B008BE11F /* Assets.xcassets in Resources */,
 				A8E8C2772197CB1E008BE11F /* Main.storyboard in Resources */,
 				A8E8C31621B4BD91008BE11F /* DetailVC.xib in Resources */,

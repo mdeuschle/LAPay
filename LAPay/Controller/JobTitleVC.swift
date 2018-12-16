@@ -8,10 +8,10 @@
 
 import UIKit
 
-class JobTitleVC: UIViewController {
+class JobTitleVC: UITableViewController {
     
-    @IBOutlet private weak var tableView: UITableView!
-    
+//    @IBOutlet private weak var tableView: UITableView!
+
     private var payrolls = [Payroll]()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class JobTitleVC: UIViewController {
     }
     
     init(payrolls: [Payroll]) {
-        super.init(nibName: "JobTitleVC", bundle: nil)
+        super.init(style: .plain)
         self.payrolls = payrolls
     }
     
@@ -31,24 +31,23 @@ class JobTitleVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        fatalError("\(#function) has not been implemented")
+    }
+    
     private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
     }
-}
-
-extension JobTitleVC: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return payrolls.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else {
             return UITableViewCell()
         }
@@ -56,15 +55,18 @@ extension JobTitleVC: UITableViewDataSource {
         cell.configure(with: payroll)
         return cell
     }
-}
-
-extension JobTitleVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let payroll = payrolls[indexPath.row]
         let detailVC = DetailVC(payroll: payroll)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
+
+
+
+
+
 
 
