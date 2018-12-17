@@ -28,7 +28,23 @@ class RootVC: UIViewController {
         super.viewDidLoad()
         configureTableView()
         fetchPayrolls()
+        self.setStatusBarStyle(UIStatusBarStyleContrast)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         title = "Department Title"
+        updateNavigationBar()
+    }
+    
+    private func updateNavigationBar() {
+        guard let navigationController = navigationController else { return }
+        let color = ColorService.shared.theme[2]
+        navigationController.navigationBar.barTintColor = color
+        navigationController.navigationBar.tintColor = .white
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController.navigationBar.titleTextAttributes = textAttributes
+        navigationController.navigationBar.largeTitleTextAttributes = textAttributes
     }
     
     private func fetchPayrolls() {
@@ -41,6 +57,7 @@ class RootVC: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
     }
     

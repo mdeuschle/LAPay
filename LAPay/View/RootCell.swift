@@ -26,7 +26,13 @@ class RootCell: UITableViewCell {
     
     func configure(with departmentTitles: [String], indexPath: IndexPath) {
         let departmentTitle = departmentTitles[indexPath.row]
-        textLabel?.text = departmentTitle
+        let row = CGFloat(indexPath.row)
+        let count = CGFloat(departmentTitles.count)
+        if let color = ColorService.shared.theme[2].darken(byPercentage: row / count) {
+            backgroundColor = color
+            textLabel?.text = departmentTitle
+            textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+        }
     }
 }
 
