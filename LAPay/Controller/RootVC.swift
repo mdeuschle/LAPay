@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RootVC: UIViewController {
     
@@ -40,6 +41,7 @@ class RootVC: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
     }
     
     @objc private func refresh() {
@@ -72,11 +74,10 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "RootCell")
-        let departmentTitle = departmentTitles[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = departmentTitle
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: departmentTitles, indexPath: indexPath)
         return cell
     }
 }
