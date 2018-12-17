@@ -8,21 +8,19 @@
 
 import UIKit
 
-class DetailVC: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
+class DetailVC: UITableViewController {
     
     private var payroll: Payroll!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Details"
+        title = payroll.job_class_title
         configureTableView()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     init(payroll: Payroll) {
-        super.init(nibName: "DetailVC", bundle: nil)
+        super.init(style: .plain)
         self.payroll = payroll
     }
     
@@ -30,38 +28,41 @@ class DetailVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        fatalError("\(#function) has not been implemented")
+    }
+    
     private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.reuseIdentifier)
     }
-}
 
-extension DetailVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return payroll.payrollDetails.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
         let payrollDetail = payroll.payrollDetails[indexPath.row]
         cell.configure(with: payrollDetail, indexPath: indexPath)
         return cell
     }
-}
 
-extension DetailVC: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            showPDF()
+        }
     }
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        showPDF()
+    }
+    
+    private func showPDF() {
         let pdfView = PDFVC()
         pdfView.jobClassLink = payroll.job_class_link
         pdfView.view.backgroundColor = .white

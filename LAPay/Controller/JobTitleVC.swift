@@ -10,8 +10,6 @@ import UIKit
 
 class JobTitleVC: UITableViewController {
     
-//    @IBOutlet private weak var tableView: UITableView!
-
     private var payrolls = [Payroll]()
     
     override func viewDidLoad() {

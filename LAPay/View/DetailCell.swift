@@ -26,6 +26,6 @@ class DetailCell: UITableViewCell {
         accessoryType = indexPath.row == 0 ? .detailButton : .none
         selectionStyle = indexPath.row == 0 ? .default : .none
         textLabel?.text = payrollDetail.title
-        detailTextLabel?.text = payrollDetail.value
+        detailTextLabel?.text = indexPath.row == 0 ? "" : payrollDetail.value
     }
 }
