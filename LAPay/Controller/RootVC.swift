@@ -12,39 +12,39 @@ import ChameleonFramework
 class RootVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    private lazy var color = UIColor.randomFlat
     
     private var departmentTitles = [String]() {
         didSet {
             tableView.reloadData()
         }
     }
+    
     var payrolls = [Payroll]() {
         didSet {
             self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+        title = "Department Title"
         fetchPayrolls()
-        self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        title = "Department Title"
-        updateNavigationBar()
+        configureTableView()
+        configureNavigationConroller()
+        view.backgroundColor = .black
     }
     
-    private func updateNavigationBar() {
-        guard let navigationController = navigationController else { return }
-        let color = ColorService.shared.theme[2]
-        navigationController.navigationBar.barTintColor = color
-        navigationController.navigationBar.tintColor = .white
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController.navigationBar.titleTextAttributes = textAttributes
-        navigationController.navigationBar.largeTitleTextAttributes = textAttributes
+    private func configureNavigationConroller() {
+        navigationController?.navigationBar.barTintColor = color
+        let contrastColor = ContrastColorOf(color, returnFlat: true)
+        let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
     }
     
     private func fetchPayrolls() {
@@ -59,6 +59,7 @@ class RootVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
+        tableView.backgroundColor = .black
     }
     
     @objc private func refresh() {
@@ -94,7 +95,8 @@ extension RootVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
             return UITableViewCell()
         }
-        cell.configure(with: departmentTitles, indexPath: indexPath)
+        let departmentTitle = departmentTitles[indexPath.row]
+        cell.configure(with: departmentTitle, color: color, indexPath: indexPath)
         return cell
     }
 }

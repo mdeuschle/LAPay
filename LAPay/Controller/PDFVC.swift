@@ -23,6 +23,7 @@ class PDFVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Job Description"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let pdfView = PDFView()
