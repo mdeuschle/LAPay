@@ -31,6 +31,7 @@ class RootVC: UIViewController {
         title = "Department Title"
         fetchPayrolls()
         self.setStatusBarStyle(UIStatusBarStyleContrast)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +48,7 @@ class RootVC: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         navigationController?.navigationBar.tintColor = contrastColor
+        navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
     private func fetchPayrolls() {
