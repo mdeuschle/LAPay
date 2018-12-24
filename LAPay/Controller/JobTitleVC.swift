@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class JobTitleVC: UITableViewController {
     
     private var payrolls = [Payroll]()
+    var color: UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         title = "Job Title & Total Earnings"
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureTableView()
     }
     
     init(payrolls: [Payroll]) {
@@ -35,6 +41,7 @@ class JobTitleVC: UITableViewController {
     
     private func configureTableView() {
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
+        tableView.backgroundColor = color
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,8 +56,7 @@ class JobTitleVC: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else {
             return UITableViewCell()
         }
-        let payroll = payrolls[indexPath.row]
-        cell.configure(with: payroll)
+        cell.configure(with: payrolls, color: color, indexPath: indexPath)
         return cell
     }
     
@@ -58,6 +64,7 @@ class JobTitleVC: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let payroll = payrolls[indexPath.row]
         let detailVC = DetailVC(payroll: payroll)
+        detailVC.color = color
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

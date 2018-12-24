@@ -16,17 +16,17 @@ class RootCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         textLabel?.numberOfLines = 0
-        accessoryType = .disclosureIndicator
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with departmentTitle: String, color: UIColor, indexPath: IndexPath) {
-        guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(50)) else { return }
+    func configure(with departmentTitles: [String], color: UIColor, indexPath: IndexPath) {
+        guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(departmentTitles.count)) else { return }
         backgroundColor = cellColor
         textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
+        let departmentTitle = departmentTitles[indexPath.row]
         textLabel?.text = departmentTitle
     }
 }

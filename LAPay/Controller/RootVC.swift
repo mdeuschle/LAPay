@@ -30,13 +30,14 @@ class RootVC: UIViewController {
         super.viewDidLoad()
         title = "Department Title"
         fetchPayrolls()
+        self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
         configureNavigationConroller()
-        view.backgroundColor = .black
+        view.backgroundColor = color
     }
     
     private func configureNavigationConroller() {
@@ -45,6 +46,7 @@ class RootVC: UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+        navigationController?.navigationBar.tintColor = contrastColor
     }
     
     private func fetchPayrolls() {
@@ -59,7 +61,7 @@ class RootVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = color
     }
     
     @objc private func refresh() {
@@ -95,8 +97,7 @@ extension RootVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
             return UITableViewCell()
         }
-        let departmentTitle = departmentTitles[indexPath.row]
-        cell.configure(with: departmentTitle, color: color, indexPath: indexPath)
+        cell.configure(with: departmentTitles, color: color, indexPath: indexPath)
         return cell
     }
 }
@@ -107,6 +108,7 @@ extension RootVC: UITableViewDelegate {
         var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
         filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
+        jobTitleVC.color = color
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }

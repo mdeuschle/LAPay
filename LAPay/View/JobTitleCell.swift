@@ -22,9 +22,15 @@ class JobTitleCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with payroll: Payroll) {
-        accessoryType = .disclosureIndicator
+    func configure(with payrolls: [Payroll], color: UIColor?, indexPath: IndexPath) {
+        let payroll = payrolls[indexPath.row]
         textLabel?.text = payroll.job_class_title
         detailTextLabel?.text = payroll.total_payments?.dollars
+        guard let color = color else { return }
+        guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(payrolls.count)) else { return }
+        backgroundColor = cellColor
+        textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
+        detailTextLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
     }
 }
+

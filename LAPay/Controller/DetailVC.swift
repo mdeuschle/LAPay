@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class DetailVC: UITableViewController {
     
     private var payroll: Payroll!
+    var color: UIColor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class DetailVC: UITableViewController {
     
     private func configureTableView() {
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.reuseIdentifier)
+        tableView.backgroundColor = color
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,8 +49,7 @@ class DetailVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
-        let payrollDetail = payroll.payrollDetails[indexPath.row]
-        cell.configure(with: payrollDetail, indexPath: indexPath)
+        cell.configure(with: payroll.payrollDetails, color: color, indexPath: indexPath)
         return cell
     }
 
@@ -63,9 +65,9 @@ class DetailVC: UITableViewController {
     }
     
     private func showPDF() {
-        let pdfView = PDFVC()
-        pdfView.jobClassLink = payroll.job_class_link
-        pdfView.view.backgroundColor = .white
-        navigationController?.pushViewController(pdfView, animated: false)
+        let pdfVC = PDFVC()
+        pdfVC.jobClassLink = payroll.job_class_link
+        pdfVC.color = color
+        navigationController?.pushViewController(pdfVC, animated: false)
     }
 }
