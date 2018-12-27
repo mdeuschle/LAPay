@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		108E285745691D21BEE24417 /* Pods_LAPayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7909F1324EC035C023D532 /* Pods_LAPayTests.framework */; };
 		A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A4CA4021C72F3F00539BBE /* RootCell.swift */; };
+		A8DC1DE021D48B25008AA259 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DDF21D48B25008AA259 /* Color.swift */; };
+		A8DC1DE221D48CC0008AA259 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DE121D48CC0008AA259 /* Theme.swift */; };
+		A8DC1DE521D4951F008AA259 /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DE321D4951F008AA259 /* ThemeCell.swift */; };
+		A8DC1DE821D49B3E008AA259 /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DE721D49B3E008AA259 /* ThemeVC.swift */; };
 		A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2712197CB1E008BE11F /* AppDelegate.swift */; };
 		A8E8C2772197CB1E008BE11F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2752197CB1E008BE11F /* Main.storyboard */; };
 		A8E8C2792197CB2B008BE11F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E8C2782197CB2B008BE11F /* Assets.xcassets */; };
@@ -59,6 +63,10 @@
 		86FF258350678F0F05F85242 /* Pods_LAPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LAPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A98B21D822FE70F07D5569 /* Pods-LAPayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LAPayTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LAPayTests/Pods-LAPayTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8A4CA4021C72F3F00539BBE /* RootCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCell.swift; sourceTree = "<group>"; };
+		A8DC1DDF21D48B25008AA259 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		A8DC1DE121D48CC0008AA259 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A8DC1DE321D4951F008AA259 /* ThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
+		A8DC1DE721D49B3E008AA259 /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
 		A8E8C26E2197CB1E008BE11F /* LAPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E8C2712197CB1E008BE11F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8E8C2762197CB1E008BE11F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -213,6 +221,7 @@
 				A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */,
 				A8E8C31321B4BD91008BE11F /* DetailVC.swift */,
 				A8E8C32121C0B844008BE11F /* PDFVC.swift */,
+				A8DC1DE721D49B3E008AA259 /* ThemeVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -225,6 +234,7 @@
 				A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */,
 				A8E8C31F21C0B26A008BE11F /* DetailCell.swift */,
 				A8E8C2CB21A52375008BE11F /* Alert.swift */,
+				A8DC1DE321D4951F008AA259 /* ThemeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +245,8 @@
 				A8E8C2B52197EC81008BE11F /* Payroll.swift */,
 				A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */,
 				A8E8C2BA2198ED74008BE11F /* Cache.swift */,
+				A8DC1DDF21D48B25008AA259 /* Color.swift */,
+				A8DC1DE121D48CC0008AA259 /* Theme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -511,12 +523,16 @@
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
 				A8E8C32221C0B844008BE11F /* PDFVC.swift in Sources */,
 				A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */,
+				A8DC1DE221D48CC0008AA259 /* Theme.swift in Sources */,
+				A8DC1DE821D49B3E008AA259 /* ThemeVC.swift in Sources */,
+				A8DC1DE021D48B25008AA259 /* Color.swift in Sources */,
 				A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,
 				A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */,
 				A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */,
+				A8DC1DE521D4951F008AA259 /* ThemeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

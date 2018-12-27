@@ -37,7 +37,18 @@ class RootVC: UIViewController {
         super.viewWillAppear(animated)
         configureTableView()
         configureNavigationConroller()
+        configureThemeButton()
         view.backgroundColor = color
+    }
+    
+    func configureThemeButton() {
+        let themButton = UIBarButtonItem(title: "Theme", style: .done, target: self, action: #selector(themeButtonTapped))
+        navigationItem.rightBarButtonItem = themButton
+    }
+    
+    @objc private func themeButtonTapped() {
+        let themeVC = ThemeVC()
+        navigationController?.pushViewController(themeVC, animated: true)
     }
     
     private func configureNavigationConroller() {
