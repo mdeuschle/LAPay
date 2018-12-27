@@ -48,6 +48,7 @@ class RootVC: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         navigationController?.navigationBar.tintColor = contrastColor
         navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
+        navigationController?.hidesNavigationBarHairline = true
     }
     
     private func fetchPayrolls() {

@@ -16,6 +16,7 @@ class JobTitleCell: UITableViewCell {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         textLabel?.numberOfLines = 0
         detailTextLabel?.numberOfLines = 0
+        accessoryType = .disclosureIndicator
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +32,7 @@ class JobTitleCell: UITableViewCell {
         backgroundColor = cellColor
         textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
         detailTextLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
+        tintColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
     }
 }
 

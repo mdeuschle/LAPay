@@ -16,6 +16,7 @@ class RootCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         textLabel?.numberOfLines = 0
+        accessoryType = .disclosureIndicator
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,6 +27,7 @@ class RootCell: UITableViewCell {
         guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(departmentTitles.count)) else { return }
         backgroundColor = cellColor
         textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
+        tintColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
         let departmentTitle = departmentTitles[indexPath.row]
         textLabel?.text = departmentTitle
     }
