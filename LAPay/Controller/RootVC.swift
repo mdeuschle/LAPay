@@ -31,7 +31,6 @@ class RootVC: UIViewController {
         title = "Department Title"
         fetchPayrolls()
         self.setStatusBarStyle(UIStatusBarStyleContrast)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +109,7 @@ extension RootVC: UITableViewDelegate {
         var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
         filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
+        jobTitleVC.title = departmentTitles[indexPath.row]
         jobTitleVC.color = color
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }

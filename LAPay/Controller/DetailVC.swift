@@ -37,6 +37,7 @@ class DetailVC: UITableViewController {
     private func configureTableView() {
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.reuseIdentifier)
         tableView.backgroundColor = color
+        tableView.separatorStyle = .none
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

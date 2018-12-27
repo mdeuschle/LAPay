@@ -16,7 +16,6 @@ class JobTitleVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Job Title & Total Earnings"
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -42,6 +41,7 @@ class JobTitleVC: UITableViewController {
     private func configureTableView() {
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
         tableView.backgroundColor = color
+        tableView.separatorStyle = .none
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
