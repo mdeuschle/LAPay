@@ -2,39 +2,29 @@
 //  ThemeCell.swift
 //  LAPay
 //
-//  Created by Matt Deuschle on 12/26/18.
+//  Created by Matt Deuschle on 12/27/18.
 //  Copyright © 2018 Matt Deuschle. All rights reserved.
 //
 
 import UIKit
 
-class ThemeCell: UICollectionViewCell {
+class ThemeCell: UITableViewCell {
     
-    weak var colorView: UIView!
-    static var reuseIdentifier = "ThemeCell"
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        let colorView = UIView(frame: .zero)
-        colorView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(colorView)
-        NSLayoutConstraint.activate([
-            colorView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            colorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            colorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            colorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-            ])
-        self.colorView = colorView
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    @IBOutlet weak var colorContainer: UIView!
+    @IBOutlet weak var baseColorView: UIView!
+    @IBOutlet weak var darkColorView: UIView!
+    @IBOutlet weak var colorTitle: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        fatalError("Interface Builder is not supported!")
+        colorContainer.layer.cornerRadius = colorContainer.frame.width / 2
+        colorContainer.clipsToBounds = true
+//        backgroundColor = .clear
+    }
+
+    func configure(with color: Color) {
+        baseColorView.backgroundColor = color.base
+        darkColorView.backgroundColor = color.dark
+        colorTitle.text = color.title
     }
 }
-
-

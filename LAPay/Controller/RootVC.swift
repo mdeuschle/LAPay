@@ -9,10 +9,15 @@
 import UIKit
 import ChameleonFramework
 
-class RootVC: UIViewController {
+class RootVC: UIViewController, ThemeDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
-    private lazy var color = UIColor.randomFlat
+    
+    private var color: Color? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private var departmentTitles = [String]() {
         didSet {
@@ -30,15 +35,16 @@ class RootVC: UIViewController {
         super.viewDidLoad()
         title = "Department Title"
         fetchPayrolls()
+        loadColor()
         self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
-        configureNavigationConroller()
+        configureNavigationController()
         configureThemeButton()
-        view.backgroundColor = color
+        view.backgroundColor = color!.dark
     }
     
     func configureThemeButton() {
@@ -47,13 +53,21 @@ class RootVC: UIViewController {
     }
     
     @objc private func themeButtonTapped() {
-        let themeVC = ThemeVC()
+        let themeVC = ThemeVC(delegate: self)
         navigationController?.pushViewController(themeVC, animated: true)
     }
     
-    private func configureNavigationConroller() {
-        navigationController?.navigationBar.barTintColor = color
-        let contrastColor = ContrastColorOf(color, returnFlat: true)
+    private func loadColor() {
+        color = Dao().unarchiveColor() ?? Color(title: "Mint", base: .flatMint, dark: .flatMintDark)
+    }
+    
+    func choose(color: Color) {
+        self.color = color
+    }
+    
+    private func configureNavigationController() {
+        navigationController?.navigationBar.barTintColor = color?.dark
+        let contrastColor = ContrastColorOf(color!.dark, returnFlat: true)
         let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
@@ -74,7 +88,7 @@ class RootVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
-        tableView.backgroundColor = color
+        tableView.backgroundColor = color?.dark
     }
     
     @objc private func refresh() {
@@ -110,7 +124,7 @@ extension RootVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
             return UITableViewCell()
         }
-        cell.configure(with: departmentTitles, color: color, indexPath: indexPath)
+        cell.configure(with: departmentTitles, color: color!.base, indexPath: indexPath)
         return cell
     }
 }
@@ -122,7 +136,7 @@ extension RootVC: UITableViewDelegate {
         filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
         jobTitleVC.title = departmentTitles[indexPath.row]
-        jobTitleVC.color = color
+        jobTitleVC.color = color?.base
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
