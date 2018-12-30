@@ -100,7 +100,7 @@ class RootVC: UIViewController, ThemeDelegate {
                     self.payrolls = payrolls
                     Dao().archive(payrolls: payrolls)
                 } else {
-                    Alert(viewController: self).show()
+                    Alert(viewController: self).show(message: .error)
                 }
                 spinner.stopAnimating()
             }

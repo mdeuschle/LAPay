@@ -11,7 +11,7 @@ import PDFKit
 
 class PDFVC: UIViewController {
     
-    var jobClassLink: String?
+    var document: PDFDocument?
     var color: UIColor?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -39,9 +39,7 @@ class PDFVC: UIViewController {
             pdfView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         
-        guard let jobClassLink = jobClassLink, let url = URL(string: jobClassLink) else { return }
-        
-        if let document = PDFDocument(url: url) {
+        if let document = document {
             pdfView.document = document
         }
     }

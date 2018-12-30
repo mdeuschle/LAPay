@@ -19,7 +19,6 @@ class ThemeCell: UITableViewCell {
         super.awakeFromNib()
         colorContainer.layer.cornerRadius = colorContainer.frame.width / 2
         colorContainer.clipsToBounds = true
-//        backgroundColor = .clear
     }
 
     func configure(with color: Color) {

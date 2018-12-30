@@ -8,11 +8,16 @@
 
 import UIKit
 
+enum ErrorMessage: String {
+    case error = "An unknown error occured"
+    case noDescription = "Job Description Not Available"
+}
+
 struct Alert {
     let viewController: UIViewController
-    func show(){
+    func show(message: ErrorMessage){
         let alertController = UIAlertController(title: "Oops",
-                                                message: "An error occured",
+                                                message: message.rawValue,
                                                 preferredStyle: .alert)
         let action = UIAlertAction(title: "OK",
                                    style: .cancel,

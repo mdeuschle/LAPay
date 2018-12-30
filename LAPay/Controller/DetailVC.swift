@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import PDFKit
 
 class DetailVC: UITableViewController {
     
@@ -66,8 +67,14 @@ class DetailVC: UITableViewController {
     }
     
     private func showPDF() {
+        guard let jobClassLink = payroll.job_class_link,
+        let url = URL(string: jobClassLink),
+            let document = PDFDocument(url: url) else {
+                Alert(viewController: self).show(message: .noDescription)
+                return
+        }
         let pdfVC = PDFVC()
-        pdfVC.jobClassLink = payroll.job_class_link
+        pdfVC.document = document
         pdfVC.color = color
         navigationController?.pushViewController(pdfVC, animated: false)
     }
