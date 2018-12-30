@@ -26,6 +26,11 @@ class ThemeVC: UITableViewController {
         tableView.register(UINib(nibName: "ThemeCell", bundle: nil), forCellReuseIdentifier: "ThemeCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Choose Theme"
+    }
+    
     init(delegate: ThemeDelegate) {
         super.init(style: .plain)
         self.delegate = delegate

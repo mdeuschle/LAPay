@@ -12,19 +12,16 @@ import ChameleonFramework
 class RootVC: UIViewController, ThemeDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
-    
     private var color: Color? {
         didSet {
             tableView.reloadData()
         }
     }
-    
     private var departmentTitles = [String]() {
         didSet {
             tableView.reloadData()
         }
     }
-    
     var payrolls = [Payroll]() {
         didSet {
             self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
@@ -63,6 +60,7 @@ class RootVC: UIViewController, ThemeDelegate {
     
     func choose(color: Color) {
         self.color = color
+        Dao().archive(color: color)
     }
     
     private func configureNavigationController() {
@@ -77,7 +75,7 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     
     private func fetchPayrolls() {
-        payrolls = Cache.loadPayrolls()
+        payrolls = Dao().unarchivePayrolls() ?? [Payroll]()
         if payrolls.isEmpty {
             refresh()
         }
@@ -100,7 +98,7 @@ class RootVC: UIViewController, ThemeDelegate {
             DispatchQueue.main.async {
                 if let payrolls = json {
                     self.payrolls = payrolls
-                    Cache.archive(payrolls: payrolls)
+                    Dao().archive(payrolls: payrolls)
                 } else {
                     Alert(viewController: self).show()
                 }
@@ -121,10 +119,11 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell,
+        let color = color else {
             return UITableViewCell()
         }
-        cell.configure(with: departmentTitles, color: color!.base, indexPath: indexPath)
+        cell.configure(with: departmentTitles, color: color.base, indexPath: indexPath)
         return cell
     }
 }

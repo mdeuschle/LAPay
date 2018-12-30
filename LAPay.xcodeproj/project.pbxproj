@@ -27,7 +27,6 @@
 		A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B32197E7BE008BE11F /* WebService.swift */; };
 		A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B52197EC81008BE11F /* Payroll.swift */; };
 		A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */; };
-		A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2BA2198ED74008BE11F /* Cache.swift */; };
 		A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */; };
 		A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */; };
 		A8E8C2CA21A27E17008BE11F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8C2C921A27E17008BE11F /* String.swift */; };
@@ -89,7 +88,6 @@
 		A8E8C2B32197E7BE008BE11F /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		A8E8C2B52197EC81008BE11F /* Payroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payroll.swift; sourceTree = "<group>"; };
 		A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollStore.swift; sourceTree = "<group>"; };
-		A8E8C2BA2198ED74008BE11F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A8E8C2C021A222D7008BE11F /* JobTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleVC.swift; sourceTree = "<group>"; };
 		A8E8C2C621A279E9008BE11F /* JobTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTitleCell.swift; sourceTree = "<group>"; };
 		A8E8C2C921A27E17008BE11F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 			children = (
 				A8E8C2B52197EC81008BE11F /* Payroll.swift */,
 				A8E8C2B82198DFCC008BE11F /* PayrollStore.swift */,
-				A8E8C2BA2198ED74008BE11F /* Cache.swift */,
 				A8DC1DDF21D48B25008AA259 /* Color.swift */,
 				A8DC1DE921D5DDB1008AA259 /* ColorService.swift */,
 				A8DC1DF521D85E5D008AA259 /* Dao.swift */,
@@ -523,7 +520,6 @@
 				A8E8C2B42197E7BE008BE11F /* WebService.swift in Sources */,
 				A8E8C2CA21A27E17008BE11F /* String.swift in Sources */,
 				A8E8C31521B4BD91008BE11F /* DetailVC.swift in Sources */,
-				A8E8C2BB2198ED74008BE11F /* Cache.swift in Sources */,
 				A8E8C32021C0B26A008BE11F /* DetailCell.swift in Sources */,
 				A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */,
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
