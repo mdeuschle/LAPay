@@ -33,6 +33,7 @@ class RootVC: UIViewController, ThemeDelegate {
         title = "Department Title"
         fetchPayrolls()
         loadColor()
+        refreshIfNeeded()
         self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
@@ -87,6 +88,19 @@ class RootVC: UIViewController, ThemeDelegate {
         tableView.separatorStyle = .none
         tableView.register(RootCell.self, forCellReuseIdentifier: RootCell.reuseIdentifier)
         tableView.backgroundColor = color?.dark
+    }
+    
+    private func refreshIfNeeded() {
+        let userDefaults = UserDefaults.standard
+        if let setDate = userDefaults.object(forKey: "date") as? Date {
+            let currentDate = Date()
+            if let refreshDate = Calendar.current.date(byAdding: .month, value: 6, to: setDate) {
+                if currentDate > refreshDate {
+                    payrolls = [Payroll]()
+                    refresh()
+                }
+            }
+        }
     }
     
     @objc private func refresh() {

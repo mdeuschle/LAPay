@@ -12,18 +12,20 @@ struct WebService: DataSource {
     static let shared = WebService()
     private init() {}
     
-    private var urlString: String = {
+    private func urlString() -> String {
         let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json?$limit=100000&year="
         let date = Date()
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(date, forKey: "date")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
         let year = formatter.string(from: date)
         let previousYearInt = (Int(year) ?? 2019) - 1
         return base + "\(previousYearInt)"
-    }()
+    }
     
     func dataSource(completion: @escaping (Response<Data>) -> Void) {
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: urlString()) else {
             fatalError("Could not compose a valid URL in \(#file).\(#function)")}
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             let response: Response<Data>
