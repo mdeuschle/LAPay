@@ -10,8 +10,17 @@ import Foundation
 
 struct WebService: DataSource {
     static let shared = WebService()
-    private let urlString = "https://controllerdata.lacity.org/resource/969q-4gr3.json"
     private init() {}
+    
+    private var urlString: String = {
+        let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json?$limit=100000&year="
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        let year = formatter.string(from: date)
+        let previousYearInt = (Int(year) ?? 2019) - 1
+        return base + "\(previousYearInt)"
+    }()
     
     func dataSource(completion: @escaping (Response<Data>) -> Void) {
         guard let url = URL(string: urlString) else {

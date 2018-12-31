@@ -90,7 +90,7 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     
     @objc private func refresh() {
-        let spinner = UIActivityIndicatorView(style: .gray)
+        let spinner = UIActivityIndicatorView(style: .whiteLarge)
         view.addSubview(spinner)
         spinner.center = view.center
         spinner.startAnimating()
