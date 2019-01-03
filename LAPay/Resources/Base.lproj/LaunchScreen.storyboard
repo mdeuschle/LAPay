@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-W0-fIL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-W0-fIL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                         </subviews>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchBackground" width="828" height="1792"/>
+        <image name="launch" width="828" height="1792"/>
     </resources>
 </document>
