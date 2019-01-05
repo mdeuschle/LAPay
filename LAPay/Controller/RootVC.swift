@@ -12,19 +12,29 @@ import ChameleonFramework
 class RootVC: UIViewController, ThemeDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
+    private var isFiltering = false
+    private var departmentTitles = [String]()
+    private var filteredDepartmentTitles = [String]() {
+        didSet {
+            if isFiltering {
+                departmentTitles = filteredDepartmentTitles
+            } else {
+                departmentTitles = PayrollService.departmentTitles(for: payrolls)
+            }
+            tableView.reloadData()
+        }
+    }
     private var color: Color? {
         didSet {
             tableView.reloadData()
+            contrastColor = ContrastColorOf(color?.dark ?? .white, returnFlat: true)
         }
     }
-    private var departmentTitles = [String]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var contrastColor: UIColor!
     var payrolls = [Payroll]() {
         didSet {
-            self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
+            departmentTitles = PayrollService.departmentTitles(for: payrolls)
+            tableView.reloadData()
         }
     }
     
@@ -34,7 +44,8 @@ class RootVC: UIViewController, ThemeDelegate {
         fetchPayrolls()
         loadColor()
         refreshIfNeeded()
-        self.setStatusBarStyle(UIStatusBarStyleContrast)
+        configureSearchBar()
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,9 +54,17 @@ class RootVC: UIViewController, ThemeDelegate {
         configureNavigationController()
         configureThemeButton()
         view.backgroundColor = color!.dark
+        self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
-    func configureThemeButton() {
+    private func configureSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        navigationItem.searchController = searchController
+    }
+    
+    private func configureThemeButton() {
         let themButton = UIBarButtonItem(title: "Theme", style: .done, target: self, action: #selector(themeButtonTapped))
         navigationItem.rightBarButtonItem = themButton
     }
@@ -66,8 +85,7 @@ class RootVC: UIViewController, ThemeDelegate {
     
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = color?.dark
-        let contrastColor = ContrastColorOf(color!.dark, returnFlat: true)
-        let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor!]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         navigationController?.navigationBar.tintColor = contrastColor
@@ -151,6 +169,31 @@ extension RootVC: UITableViewDelegate {
         jobTitleVC.title = departmentTitles[indexPath.row]
         jobTitleVC.color = color?.base
         navigationController?.pushViewController(jobTitleVC, animated: true)
+    }
+}
+
+extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchBar.tintColor = contrastColor!
+        searchController.searchBar.setSerchTextcolor(color: contrastColor!)
+        if let text = searchController.searchBar.text, !text.isEmpty {
+            isFiltering = true
+            filteredDepartmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
+                $0.lowercased().contains(text.lowercased())
+            }
+        } else {
+            isFiltering = false
+            filteredDepartmentTitles = [String]()
+            view.endEditing(true)
+        }
+    }
+}
+
+extension UISearchBar {
+    public func setSerchTextcolor(color: UIColor) {
+        let clrChange = subviews.flatMap { $0.subviews }
+        guard let sc = (clrChange.filter { $0 is UITextField }).first as? UITextField else { return }
+        sc.textColor = color
     }
 }
 
