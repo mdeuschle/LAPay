@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 struct Color {
     let title: String
@@ -37,6 +38,12 @@ extension Color: Codable {
         try container.encode(baseColorData, forKey: .base)
         let darkColorData = try NSKeyedArchiver.archivedData(withRootObject: dark, requiringSecureCoding: false)
         try container.encode(darkColorData, forKey: .dark)
+    }
+}
+
+extension Color {
+    var contrast: UIColor {
+        return ContrastColorOf(self.dark, returnFlat: true)
     }
 }
 

@@ -27,10 +27,8 @@ class RootVC: UIViewController, ThemeDelegate {
     private var color: Color? {
         didSet {
             tableView.reloadData()
-            contrastColor = ContrastColorOf(color?.dark ?? .white, returnFlat: true)
         }
     }
-    private var contrastColor: UIColor!
     var payrolls = [Payroll]() {
         didSet {
             departmentTitles = PayrollService.departmentTitles(for: payrolls)
@@ -85,10 +83,10 @@ class RootVC: UIViewController, ThemeDelegate {
     
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = color?.dark
-        let textAttributes = [NSAttributedString.Key.foregroundColor: contrastColor!]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: color?.contrast ?? .white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
-        navigationController?.navigationBar.tintColor = contrastColor
+        navigationController?.navigationBar.tintColor = color?.contrast
         navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
         navigationController?.hidesNavigationBarHairline = true
     }
@@ -174,8 +172,8 @@ extension RootVC: UITableViewDelegate {
 
 extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.tintColor = contrastColor!
-        searchController.searchBar.setSerchTextcolor(color: contrastColor!)
+        searchController.searchBar.tintColor = color?.contrast
+        searchController.searchBar.setSerchTextcolor(color: color?.contrast ?? .white)
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
             filteredDepartmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
