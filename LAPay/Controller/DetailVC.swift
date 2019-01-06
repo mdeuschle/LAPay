@@ -79,3 +79,5 @@ class DetailVC: UITableViewController {
         navigationController?.pushViewController(pdfVC, animated: false)
     }
 }
+
+

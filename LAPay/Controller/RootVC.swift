@@ -173,7 +173,7 @@ extension RootVC: UITableViewDelegate {
 extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.tintColor = color?.contrast
-        searchController.searchBar.setSerchTextcolor(color: color?.contrast ?? .white)
+        searchController.searchBar.setText(color: color?.contrast ?? .white)
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
             filteredDepartmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
@@ -187,11 +187,4 @@ extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
     }
 }
 
-extension UISearchBar {
-    public func setSerchTextcolor(color: UIColor) {
-        let clrChange = subviews.flatMap { $0.subviews }
-        guard let sc = (clrChange.filter { $0 is UITextField }).first as? UITextField else { return }
-        sc.textColor = color
-    }
-}
 

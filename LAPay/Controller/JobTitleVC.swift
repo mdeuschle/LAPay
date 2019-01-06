@@ -13,11 +13,15 @@ class JobTitleVC: UITableViewController {
     
     private var payrolls = [Payroll]()
     var color: UIColor?
+    private var isFilter = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +70,12 @@ class JobTitleVC: UITableViewController {
         let detailVC = DetailVC(payroll: payroll)
         detailVC.color = color
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension JobTitleVC: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
 
