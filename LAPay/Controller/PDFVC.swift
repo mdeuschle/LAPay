@@ -12,7 +12,7 @@ import PDFKit
 class PDFVC: UIViewController {
     
     var document: PDFDocument?
-    var color: UIColor?
+    var color: Color?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -45,8 +45,6 @@ class PDFVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let color = color {
-            view.backgroundColor = color
-        }
+        view.backgroundColor = color?.dark
     }
 }

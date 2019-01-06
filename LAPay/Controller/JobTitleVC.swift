@@ -12,8 +12,8 @@ import ChameleonFramework
 class JobTitleVC: UITableViewController {
     
     private var payrolls = [Payroll]()
-    var color: UIColor?
-    private var isFilter = false
+    var color: Color?
+    private var isFiltering = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class JobTitleVC: UITableViewController {
     
     private func configureTableView() {
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
-        tableView.backgroundColor = color
+        tableView.backgroundColor = color?.dark
         tableView.separatorStyle = .none
     }
     
@@ -60,7 +60,7 @@ class JobTitleVC: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else {
             return UITableViewCell()
         }
-        cell.configure(with: payrolls, color: color, indexPath: indexPath)
+        cell.configure(with: payrolls, color: color?.base, indexPath: indexPath)
         return cell
     }
     

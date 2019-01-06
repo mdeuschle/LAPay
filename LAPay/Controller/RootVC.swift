@@ -83,19 +83,17 @@ class RootVC: UIViewController, ThemeDelegate {
     
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = color?.dark
-        let textAttributes = [NSAttributedString.Key.foregroundColor: color?.contrast ?? .white]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: color?.dark.contrast ?? .white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
-        navigationController?.navigationBar.tintColor = color?.contrast
+        navigationController?.navigationBar.tintColor = color?.dark.contrast
         navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
         navigationController?.hidesNavigationBarHairline = true
     }
     
     private func fetchPayrolls() {
         payrolls = Dao().unarchivePayrolls() ?? [Payroll]()
-        if payrolls.isEmpty {
-            refresh()
-        }
+        if payrolls.isEmpty { refresh() }
     }
     
     private func configureTableView() {
@@ -149,11 +147,10 @@ extension RootVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell,
-        let color = color else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
             return UITableViewCell()
         }
-        cell.configure(with: departmentTitles, color: color.base, indexPath: indexPath)
+        cell.configure(with: departmentTitles, color: color?.base ?? .white, indexPath: indexPath)
         return cell
     }
 }
@@ -165,15 +162,15 @@ extension RootVC: UITableViewDelegate {
         filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
         jobTitleVC.title = departmentTitles[indexPath.row]
-        jobTitleVC.color = color?.base
+        jobTitleVC.color = color
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
 
 extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.tintColor = color?.contrast
-        searchController.searchBar.setText(color: color?.contrast ?? .white)
+        searchController.searchBar.tintColor = color?.dark.contrast
+        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
             filteredDepartmentTitles = PayrollService.departmentTitles(for: payrolls).filter {

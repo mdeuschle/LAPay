@@ -13,7 +13,7 @@ import PDFKit
 class DetailVC: UITableViewController {
     
     private var payroll: Payroll!
-    var color: UIColor?
+    var color: Color?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class DetailVC: UITableViewController {
     
     private func configureTableView() {
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.reuseIdentifier)
-        tableView.backgroundColor = color
+        tableView.backgroundColor = color?.dark
         tableView.separatorStyle = .none
     }
 
@@ -51,7 +51,7 @@ class DetailVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
-        cell.configure(with: payroll.payrollDetails, color: color, indexPath: indexPath)
+        cell.configure(with: payroll.payrollDetails, color: color?.base, indexPath: indexPath)
         return cell
     }
 

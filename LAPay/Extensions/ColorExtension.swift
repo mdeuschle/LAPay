@@ -9,9 +9,9 @@
 import UIKit
 import ChameleonFramework
 
-extension Color {
+extension UIColor {
     var contrast: UIColor {
-        return ContrastColorOf(self.dark, returnFlat: true)
+        return ContrastColorOf(self, returnFlat: true)
     }
 }
 
