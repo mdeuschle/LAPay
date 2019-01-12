@@ -10,13 +10,12 @@ import Foundation
 
 struct PayrollService {
     static func departmentTitles(for payrolls: [Payroll]) -> [String] {
-        var result = Set<String>()
-        payrolls.forEach { payroll in
-            if let departmentTitle = payroll.department_title {
-                result.insert(departmentTitle)
-            }
-        }
-        return Array(result).sorted()
+        return Array(Set(payrolls.compactMap { $0.department_title })).sorted()
+    }
+    static func jobClassTitles(for payrolls: [Payroll]) -> [String] {
+        return payrolls.compactMap { $0.job_class_title }.sorted()
     }
 }
+
+
 

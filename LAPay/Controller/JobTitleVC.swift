@@ -11,9 +11,29 @@ import ChameleonFramework
 
 class JobTitleVC: UITableViewController {
     
-    private var payrolls = [Payroll]()
+    private var _payrolls = [Payroll]() {
+        didSet {
+            payrolls = _payrolls
+        }
+    }
+    private var payrolls = [Payroll]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var color: Color?
     private var isFiltering = false
+    
+    private var filteredPayrolls = [Payroll]() {
+        didSet {
+            if isFiltering {
+                payrolls = filteredPayrolls
+            } else {
+                payrolls = _payrolls
+            }
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +42,19 @@ class JobTitleVC: UITableViewController {
                                                            style: .plain,
                                                            target: nil,
                                                            action: nil)
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
+        configureSearchBar()
     }
     
     init(payrolls: [Payroll]) {
         super.init(style: .plain)
         self.payrolls = payrolls
+        _payrolls = payrolls
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,16 +65,20 @@ class JobTitleVC: UITableViewController {
         fatalError("\(#function) has not been implemented")
     }
     
+    private func configureSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.searchBar
+        navigationItem.searchController = searchController
+    }
+    
     private func configureTableView() {
         tableView.register(JobTitleCell.self, forCellReuseIdentifier: JobTitleCell.reuseIdentifier)
         tableView.backgroundColor = color?.dark
         tableView.separatorStyle = .none
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return payrolls.count
     }
@@ -75,7 +102,26 @@ class JobTitleVC: UITableViewController {
 
 extension JobTitleVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        searchController.searchBar.tintColor = color?.dark.contrast
+        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        if let text = searchController.searchBar.text, !text.isEmpty {
+            isFiltering = true
+            var _payrolls = [Payroll]()
+            let filteredJobClassTitles = PayrollService.jobClassTitles(for: payrolls).filter {
+                $0.lowercased().contains(text.lowercased())
+            }
+            filteredJobClassTitles.forEach { filteredJobClassTitle in
+                var filteredPayrolls = payrolls.filter { $0.job_class_title == filteredJobClassTitle }
+                filteredPayrolls.sort {
+                    Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
+                }
+                _payrolls.append(filteredPayrolls.first!)
+            }
+            self.filteredPayrolls = _payrolls
+        } else {
+            isFiltering = false
+            self.filteredPayrolls = [Payroll]()
+        }
     }
 }
 

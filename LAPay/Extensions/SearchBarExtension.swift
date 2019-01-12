@@ -13,5 +13,6 @@ extension UISearchBar {
         let viewSubviews = subviews.compactMap { $0.subviews }.first
         guard let searchTextField = (viewSubviews?.filter { $0 is UITextField })?.first as? UITextField else { return }
         searchTextField.textColor = color
+        searchTextField.autocapitalizationType = .none
     }
 }

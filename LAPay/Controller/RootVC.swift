@@ -59,6 +59,7 @@ class RootVC: UIViewController, ThemeDelegate {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.delegate = self
+        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
         navigationItem.searchController = searchController
     }
     
@@ -158,8 +159,11 @@ extension RootVC: UITableViewDataSource {
 extension RootVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitles[indexPath.row] }
-        filteredPayrolls.sort { Double($0.total_payments!)! > Double($1.total_payments!)! }
+        let departmentTitle = departmentTitles[indexPath.row]
+        var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitle }
+        filteredPayrolls.sort {
+            Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
+        }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
         jobTitleVC.title = departmentTitles[indexPath.row]
         jobTitleVC.color = color
