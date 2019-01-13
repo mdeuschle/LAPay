@@ -21,7 +21,7 @@ class JobTitleVC: UITableViewController {
             tableView.reloadData()
         }
     }
-    var color: Color?
+    private var color: Color?
     private var isFiltering = false
     
     private var filteredPayrolls = [Payroll]() {
@@ -51,9 +51,11 @@ class JobTitleVC: UITableViewController {
         configureSearchBar()
     }
     
-    init(payrolls: [Payroll]) {
+    init(payrolls: [Payroll], title: String, color: Color?) {
         super.init(style: .plain)
         self.payrolls = payrolls
+        self.title = title
+        self.color = color
         _payrolls = payrolls
     }
     
@@ -69,7 +71,7 @@ class JobTitleVC: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.delegate = self
-        searchController.searchBar
+        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
         navigationItem.searchController = searchController
     }
     

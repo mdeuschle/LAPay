@@ -23,8 +23,8 @@ class RootCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with departmentTitles: [String], color: UIColor, indexPath: IndexPath) {
-        guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(departmentTitles.count)) else { return }
+    func configure(with departmentTitles: [String], color: UIColor?, indexPath: IndexPath) {
+        guard let cellColor = color?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(departmentTitles.count)) else { return }
         backgroundColor = cellColor
         textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)
         tintColor = UIColor(contrastingBlackOrWhiteColorOn: cellColor, isFlat: true)

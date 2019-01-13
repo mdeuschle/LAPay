@@ -12,26 +12,14 @@ import ChameleonFramework
 class RootVC: UIViewController, ThemeDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
-    private var isFiltering = false
-    private var departmentTitles = [String]()
-    private var filteredDepartmentTitles = [String]() {
+    private var payrolls = [Payroll]()
+    private var departmentTitles = [String]() {
         didSet {
-            if isFiltering {
-                departmentTitles = filteredDepartmentTitles
-            } else {
-                departmentTitles = PayrollService.departmentTitles(for: payrolls)
-            }
             tableView.reloadData()
         }
     }
     private var color: Color? {
         didSet {
-            tableView.reloadData()
-        }
-    }
-    var payrolls = [Payroll]() {
-        didSet {
-            departmentTitles = PayrollService.departmentTitles(for: payrolls)
             tableView.reloadData()
         }
     }
@@ -51,7 +39,7 @@ class RootVC: UIViewController, ThemeDelegate {
         configureTableView()
         configureNavigationController()
         configureThemeButton()
-        view.backgroundColor = color!.dark
+        view.backgroundColor = color?.dark
         self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
     
@@ -60,11 +48,15 @@ class RootVC: UIViewController, ThemeDelegate {
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        searchController.dimsBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
     
     private func configureThemeButton() {
-        let themButton = UIBarButtonItem(title: "Theme", style: .done, target: self, action: #selector(themeButtonTapped))
+        let themButton = UIBarButtonItem(title: "Theme",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(themeButtonTapped))
         navigationItem.rightBarButtonItem = themButton
     }
     
@@ -74,7 +66,9 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     
     private func loadColor() {
-        color = Dao().unarchiveColor() ?? Color(title: "Mint", base: .flatMint, dark: .flatMintDark)
+        color = Dao().unarchiveColor() ?? Color(title: "Mint",
+                                                base: .flatMint,
+                                                dark: .flatMintDark)
     }
     
     func choose(color: Color) {
@@ -94,6 +88,7 @@ class RootVC: UIViewController, ThemeDelegate {
     
     private func fetchPayrolls() {
         payrolls = Dao().unarchivePayrolls() ?? [Payroll]()
+        departmentTitles = PayrollService.departmentTitles(for: payrolls)
         if payrolls.isEmpty { refresh() }
     }
     
@@ -127,6 +122,7 @@ class RootVC: UIViewController, ThemeDelegate {
             DispatchQueue.main.async {
                 if let payrolls = json {
                     self.payrolls = payrolls
+                    self.departmentTitles = PayrollService.departmentTitles(for: payrolls)
                     Dao().archive(payrolls: payrolls)
                 } else {
                     Alert(viewController: self).show(message: .error)
@@ -138,11 +134,6 @@ class RootVC: UIViewController, ThemeDelegate {
 }
 
 extension RootVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return departmentTitles.count
     }
@@ -151,7 +142,7 @@ extension RootVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RootCell.reuseIdentifier, for: indexPath) as? RootCell else {
             return UITableViewCell()
         }
-        cell.configure(with: departmentTitles, color: color?.base ?? .white, indexPath: indexPath)
+        cell.configure(with: departmentTitles, color: color?.base, indexPath: indexPath)
         return cell
     }
 }
@@ -160,13 +151,10 @@ extension RootVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let departmentTitle = departmentTitles[indexPath.row]
-        var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitle }
-        filteredPayrolls.sort {
-            Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
-        }
-        let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls)
-        jobTitleVC.title = departmentTitles[indexPath.row]
-        jobTitleVC.color = color
+        let filteredPayrolls = payrolls.filter { $0.department_title == departmentTitle }
+        let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls,
+                                    title: departmentTitles[indexPath.row],
+                                    color: color)
         navigationController?.pushViewController(jobTitleVC, animated: true)
     }
 }
@@ -176,14 +164,11 @@ extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
         searchController.searchBar.tintColor = color?.dark.contrast
         searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
         if let text = searchController.searchBar.text, !text.isEmpty {
-            isFiltering = true
-            filteredDepartmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
+            departmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
                 $0.lowercased().contains(text.lowercased())
             }
         } else {
-            isFiltering = false
-            filteredDepartmentTitles = [String]()
-            view.endEditing(true)
+            departmentTitles = PayrollService.departmentTitles(for: payrolls)
         }
     }
 }
