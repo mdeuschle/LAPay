@@ -20,6 +20,7 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     private var color: Color? {
         didSet {
+            navigationController?.configure(with: color)
             tableView.reloadData()
         }
     }
@@ -37,7 +38,6 @@ class RootVC: UIViewController, ThemeDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
-        configureNavigationController()
         configureThemeButton()
         view.backgroundColor = color?.dark
         self.setStatusBarStyle(UIStatusBarStyleContrast)
@@ -47,8 +47,9 @@ class RootVC: UIViewController, ThemeDelegate {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.delegate = self
-        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        searchController.searchBar.tintColor = color?.dark.contrast
         navigationItem.searchController = searchController
     }
     
@@ -74,16 +75,6 @@ class RootVC: UIViewController, ThemeDelegate {
     func choose(color: Color) {
         self.color = color
         Dao().archive(color: color)
-    }
-    
-    private func configureNavigationController() {
-        navigationController?.navigationBar.barTintColor = color?.dark
-        let textAttributes = [NSAttributedString.Key.foregroundColor: color?.dark.contrast ?? .white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
-        navigationController?.navigationBar.tintColor = color?.dark.contrast
-        navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
-        navigationController?.hidesNavigationBarHairline = true
     }
     
     private func fetchPayrolls() {
@@ -151,7 +142,10 @@ extension RootVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let departmentTitle = departmentTitles[indexPath.row]
-        let filteredPayrolls = payrolls.filter { $0.department_title == departmentTitle }
+        var filteredPayrolls = payrolls.filter { $0.department_title == departmentTitle }
+        filteredPayrolls.sort {
+            Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
+        }
         let jobTitleVC = JobTitleVC(payrolls: filteredPayrolls,
                                     title: departmentTitles[indexPath.row],
                                     color: color)
@@ -161,8 +155,8 @@ extension RootVC: UITableViewDelegate {
 
 extension RootVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.tintColor = color?.dark.contrast
         searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        searchController.searchBar.tintColor = color?.dark.contrast
         if let text = searchController.searchBar.text, !text.isEmpty {
             departmentTitles = PayrollService.departmentTitles(for: payrolls).filter {
                 $0.lowercased().contains(text.lowercased())

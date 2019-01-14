@@ -11,37 +11,17 @@ import ChameleonFramework
 
 class JobTitleVC: UITableViewController {
     
-    private var _payrolls = [Payroll]() {
-        didSet {
-            payrolls = _payrolls
-        }
-    }
-    private var payrolls = [Payroll]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    private var color: Color?
-    private var isFiltering = false
-    
+    private var payrolls = [Payroll]() 
     private var filteredPayrolls = [Payroll]() {
         didSet {
-            if isFiltering {
-                payrolls = filteredPayrolls
-            } else {
-                payrolls = _payrolls
-            }
             tableView.reloadData()
         }
     }
-    
+    private var isFiltering = false
+    private var color: Color?
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
+        configureNavigationBar()
         definesPresentationContext = true
     }
     
@@ -56,7 +36,6 @@ class JobTitleVC: UITableViewController {
         self.payrolls = payrolls
         self.title = title
         self.color = color
-        _payrolls = payrolls
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,11 +46,21 @@ class JobTitleVC: UITableViewController {
         fatalError("\(#function) has not been implemented")
     }
     
+    private func configureNavigationBar() {
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
+    }
+    
     private func configureSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        searchController.searchBar.tintColor = color?.dark.contrast
         navigationItem.searchController = searchController
     }
     
@@ -82,20 +71,33 @@ class JobTitleVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return payrolls.count
+        if isFiltering {
+            return filteredPayrolls.count
+        } else {
+            return payrolls.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: JobTitleCell.reuseIdentifier, for: indexPath) as? JobTitleCell else {
             return UITableViewCell()
         }
-        cell.configure(with: payrolls, color: color?.base, indexPath: indexPath)
+        if isFiltering {
+            cell.configure(with: filteredPayrolls, color: color?.base, indexPath: indexPath)
+        } else {
+            cell.configure(with: payrolls, color: color?.base, indexPath: indexPath)
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let payroll = payrolls[indexPath.row]
+        let payroll: Payroll
+        if isFiltering {
+            payroll = filteredPayrolls[indexPath.row]
+        } else {
+            payroll = payrolls[indexPath.row]
+        }
         let detailVC = DetailVC(payroll: payroll)
         detailVC.color = color
         navigationController?.pushViewController(detailVC, animated: true)
@@ -104,25 +106,19 @@ class JobTitleVC: UITableViewController {
 
 extension JobTitleVC: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.tintColor = color?.dark.contrast
         searchController.searchBar.setText(color: color?.dark.contrast ?? .white)
+        searchController.searchBar.tintColor = color?.dark.contrast
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
-            var _payrolls = [Payroll]()
-            let filteredJobClassTitles = PayrollService.jobClassTitles(for: payrolls).filter {
-                $0.lowercased().contains(text.lowercased())
+            filteredPayrolls = payrolls.filter {
+                $0.job_class_title?.lowercased().contains(text.lowercased()) ?? false
             }
-            filteredJobClassTitles.forEach { filteredJobClassTitle in
-                var filteredPayrolls = payrolls.filter { $0.job_class_title == filteredJobClassTitle }
-                filteredPayrolls.sort {
-                    Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
-                }
-                _payrolls.append(filteredPayrolls.first!)
+            filteredPayrolls.sort {
+                Double($0.total_payments ?? "") ?? 0.0 > Double($1.total_payments ?? "") ?? 0.0
             }
-            self.filteredPayrolls = _payrolls
         } else {
             isFiltering = false
-            self.filteredPayrolls = [Payroll]()
+            tableView.reloadData()
         }
     }
 }

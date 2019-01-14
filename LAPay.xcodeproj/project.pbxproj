@@ -11,6 +11,7 @@
 		A82384AF21E2A6B200520478 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384AE21E2A6B200520478 /* ColorExtension.swift */; };
 		A82384B121E2A71800520478 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B021E2A71800520478 /* StringExtension.swift */; };
 		A82384B321E2A76100520478 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B221E2A76100520478 /* SearchBarExtension.swift */; };
+		A82384B921EC1D3600520478 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */; };
 		A87E1DA521DDD92800FB0387 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = A87E1DA421DDD92800FB0387 /* launch.png */; };
 		A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A4CA4021C72F3F00539BBE /* RootCell.swift */; };
 		A8DC1DE021D48B25008AA259 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DDF21D48B25008AA259 /* Color.swift */; };
@@ -69,6 +70,7 @@
 		A82384AE21E2A6B200520478 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		A82384B021E2A71800520478 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		A82384B221E2A76100520478 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
 		A87E1DA421DDD92800FB0387 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		A8A4CA4021C72F3F00539BBE /* RootCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCell.swift; sourceTree = "<group>"; };
 		A8DC1DDF21D48B25008AA259 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				A82384B021E2A71800520478 /* StringExtension.swift */,
 				A82384AE21E2A6B200520478 /* ColorExtension.swift */,
 				A82384B221E2A76100520478 /* SearchBarExtension.swift */,
+				A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				A8E8C2C721A279E9008BE11F /* JobTitleCell.swift in Sources */,
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
+				A82384B921EC1D3600520478 /* NavigationControllerExtension.swift in Sources */,
 				A8DC1DF621D85E5D008AA259 /* Dao.swift in Sources */,
 				A82384AF21E2A6B200520478 /* ColorExtension.swift in Sources */,
 				A8DC1DEA21D5DDB1008AA259 /* ColorService.swift in Sources */,
