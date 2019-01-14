@@ -38,7 +38,7 @@ class RootVC: UIViewController, ThemeDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
-        configureThemeButton()
+        configureBarButtons()
         view.backgroundColor = color?.dark
         self.setStatusBarStyle(UIStatusBarStyleContrast)
     }
@@ -53,17 +53,26 @@ class RootVC: UIViewController, ThemeDelegate {
         navigationItem.searchController = searchController
     }
     
-    private func configureThemeButton() {
+    private func configureBarButtons() {
         let themButton = UIBarButtonItem(title: "Theme",
                                          style: .done,
                                          target: self,
                                          action: #selector(themeButtonTapped))
         navigationItem.rightBarButtonItem = themButton
+        let infoButton = UIBarButtonItem(title: "Info",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(infoButtonTapped))
+        navigationItem.leftBarButtonItem = infoButton
     }
     
     @objc private func themeButtonTapped() {
         let themeVC = ThemeVC(delegate: self)
         navigationController?.pushViewController(themeVC, animated: true)
+    }
+    
+    @objc private func infoButtonTapped() {
+        print("TAP")
     }
     
     private func loadColor() {
