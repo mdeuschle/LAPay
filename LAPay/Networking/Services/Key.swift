@@ -9,5 +9,5 @@
 import Foundation
 
 enum Key {
-    static let string = "LFuu36jqve2Td9BWBffSS1iJm"
+    static let token = "LFuu36jqve2Td9BWBffSS1iJm"
 }
