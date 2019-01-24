@@ -59,7 +59,7 @@ class RootVC: UIViewController, ThemeDelegate {
                                          target: self,
                                          action: #selector(themeButtonTapped))
         navigationItem.rightBarButtonItem = themButton
-        let infoButton = UIBarButtonItem(title: "Info",
+        let infoButton = UIBarButtonItem(title: "FAQs",
                                          style: .plain,
                                          target: self,
                                          action: #selector(infoButtonTapped))

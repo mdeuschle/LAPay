@@ -13,7 +13,7 @@ struct WebService: DataSource {
     private init() {}
     
     private func urlString() -> String {
-        let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json?$where=total_payments>80000.00&$limit=30000&year="
+        let base = "https://controllerdata.lacity.org/resource/969q-4gr3.json?$where=total_payments>80000.00&$limit=25000&$$app_token=LFuu36jqve2Td9BWBffSS1iJm&year="
         let date = Date()
         let userDefaults = UserDefaults.standard
         userDefaults.set(date, forKey: "date")

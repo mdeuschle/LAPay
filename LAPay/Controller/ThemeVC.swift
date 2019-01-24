@@ -20,10 +20,7 @@ class ThemeVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none
-        tableView.rowHeight = 76
-        tableView.backgroundColor = .flatBlack
-        tableView.register(UINib(nibName: "ThemeCell", bundle: nil), forCellReuseIdentifier: "ThemeCell")
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +39,13 @@ class ThemeVC: UITableViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         fatalError("\(#function) has not been implemented")
+    }
+    
+    private func configureTableView() {
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 76
+        tableView.backgroundColor = .flatBlack
+        tableView.register(UINib(nibName: "ThemeCell", bundle: nil), forCellReuseIdentifier: "ThemeCell")
     }
     
     // MARK: - Table view data source

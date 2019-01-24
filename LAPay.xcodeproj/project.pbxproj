@@ -12,7 +12,9 @@
 		A82384B121E2A71800520478 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B021E2A71800520478 /* StringExtension.swift */; };
 		A82384B321E2A76100520478 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B221E2A76100520478 /* SearchBarExtension.swift */; };
 		A82384B921EC1D3600520478 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */; };
-		A82384C121EDA73000520478 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C021EDA73000520478 /* Key.swift */; };
+		A82384C421EEC7BF00520478 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C221EEC7BF00520478 /* FAQCell.swift */; };
+		A82384C521EEC7BF00520478 /* FAQCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82384C321EEC7BF00520478 /* FAQCell.xib */; };
+		A82384C721EECB2800520478 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C621EECB2800520478 /* FAQVC.swift */; };
 		A87E1DA521DDD92800FB0387 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = A87E1DA421DDD92800FB0387 /* launch.png */; };
 		A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A4CA4021C72F3F00539BBE /* RootCell.swift */; };
 		A8DC1DE021D48B25008AA259 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DDF21D48B25008AA259 /* Color.swift */; };
@@ -72,7 +74,9 @@
 		A82384B021E2A71800520478 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		A82384B221E2A76100520478 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
-		A82384C021EDA73000520478 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		A82384C221EEC7BF00520478 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		A82384C321EEC7BF00520478 /* FAQCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQCell.xib; sourceTree = "<group>"; };
+		A82384C621EECB2800520478 /* FAQVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
 		A87E1DA421DDD92800FB0387 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		A8A4CA4021C72F3F00539BBE /* RootCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCell.swift; sourceTree = "<group>"; };
 		A8DC1DDF21D48B25008AA259 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 				A8E8C31321B4BD91008BE11F /* DetailVC.swift */,
 				A8E8C32121C0B844008BE11F /* PDFVC.swift */,
 				A8DC1DED21D5E4B0008AA259 /* ThemeVC.swift */,
+				A82384C621EECB2800520478 /* FAQVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -249,6 +254,8 @@
 				A8DC1DF121D5F0F6008AA259 /* ThemeCell.swift */,
 				A8DC1DF221D5F0F6008AA259 /* ThemeCell.xib */,
 				A87E1DA421DDD92800FB0387 /* launch.png */,
+				A82384C221EEC7BF00520478 /* FAQCell.swift */,
+				A82384C321EEC7BF00520478 /* FAQCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,7 +295,6 @@
 			children = (
 				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
 				A8E8C31B21BDBB97008BE11F /* PayrollService.swift */,
-				A82384C021EDA73000520478 /* Key.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				A87E1DA521DDD92800FB0387 /* launch.png in Resources */,
 				A8DC1DF421D5F0F6008AA259 /* ThemeCell.xib in Resources */,
 				A8E8C2792197CB2B008BE11F /* Assets.xcassets in Resources */,
+				A82384C521EEC7BF00520478 /* FAQCell.xib in Resources */,
 				A8E8C2772197CB1E008BE11F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,11 +554,12 @@
 				A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */,
 				A8DC1DEE21D5E4B0008AA259 /* ThemeVC.swift in Sources */,
 				A8DC1DE021D48B25008AA259 /* Color.swift in Sources */,
+				A82384C721EECB2800520478 /* FAQVC.swift in Sources */,
 				A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */,
-				A82384C121EDA73000520478 /* Key.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
 				A8E8C2B22197E366008BE11F /* DataSource.swift in Sources */,
+				A82384C421EEC7BF00520478 /* FAQCell.swift in Sources */,
 				A8E8C2C221A222D7008BE11F /* JobTitleVC.swift in Sources */,
 				A8E8C2722197CB1E008BE11F /* AppDelegate.swift in Sources */,
 				A82384B121E2A71800520478 /* StringExtension.swift in Sources */,
