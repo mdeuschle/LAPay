@@ -59,7 +59,7 @@ class RootVC: UIViewController, ThemeDelegate {
                                          target: self,
                                          action: #selector(themeButtonTapped))
         navigationItem.rightBarButtonItem = themButton
-        let infoButton = UIBarButtonItem(title: "FAQs",
+        let infoButton = UIBarButtonItem(title: "Info",
                                          style: .plain,
                                          target: self,
                                          action: #selector(infoButtonTapped))
@@ -73,6 +73,8 @@ class RootVC: UIViewController, ThemeDelegate {
     
     @objc private func infoButtonTapped() {
         print("TAP")
+        let infoVC = InfoVC()
+        navigationController?.pushViewController(infoVC, animated: true)
     }
     
     private func loadColor() {

@@ -26,7 +26,11 @@ class JobTitleCell: UITableViewCell {
     func configure(with payrolls: [Payroll], color: UIColor?, indexPath: IndexPath) {
         let payroll = payrolls[indexPath.row]
         textLabel?.text = payroll.job_class_title
-        detailTextLabel?.text = payroll.total_payments?.dollars
+        if let totalPayments = payroll.total_payments,
+            let year = payroll.year {
+            let dollars = totalPayments.dollars
+            detailTextLabel?.text = dollars + " total earnings for " + year
+        }
         guard let color = color else { return }
         guard let cellColor = color.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(payrolls.count)) else { return }
         backgroundColor = cellColor

@@ -14,7 +14,9 @@
 		A82384B921EC1D3600520478 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */; };
 		A82384C421EEC7BF00520478 /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C221EEC7BF00520478 /* FAQCell.swift */; };
 		A82384C521EEC7BF00520478 /* FAQCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82384C321EEC7BF00520478 /* FAQCell.xib */; };
-		A82384C721EECB2800520478 /* FAQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C621EECB2800520478 /* FAQVC.swift */; };
+		A82384C921F98BB900520478 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384C821F98BB900520478 /* FAQ.swift */; };
+		A82384CB21F98C9B00520478 /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384CA21F98C9B00520478 /* FAQService.swift */; };
+		A82384CE2204082900520478 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82384CC2204082900520478 /* InfoVC.swift */; };
 		A87E1DA521DDD92800FB0387 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = A87E1DA421DDD92800FB0387 /* launch.png */; };
 		A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A4CA4021C72F3F00539BBE /* RootCell.swift */; };
 		A8DC1DE021D48B25008AA259 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DC1DDF21D48B25008AA259 /* Color.swift */; };
@@ -76,7 +78,9 @@
 		A82384B821EC1D3600520478 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
 		A82384C221EEC7BF00520478 /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
 		A82384C321EEC7BF00520478 /* FAQCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQCell.xib; sourceTree = "<group>"; };
-		A82384C621EECB2800520478 /* FAQVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQVC.swift; sourceTree = "<group>"; };
+		A82384C821F98BB900520478 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		A82384CA21F98C9B00520478 /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
+		A82384CC2204082900520478 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		A87E1DA421DDD92800FB0387 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		A8A4CA4021C72F3F00539BBE /* RootCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCell.swift; sourceTree = "<group>"; };
 		A8DC1DDF21D48B25008AA259 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -238,7 +242,7 @@
 				A8E8C31321B4BD91008BE11F /* DetailVC.swift */,
 				A8E8C32121C0B844008BE11F /* PDFVC.swift */,
 				A8DC1DED21D5E4B0008AA259 /* ThemeVC.swift */,
-				A82384C621EECB2800520478 /* FAQVC.swift */,
+				A82384CC2204082900520478 /* InfoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -268,6 +272,7 @@
 				A8DC1DDF21D48B25008AA259 /* Color.swift */,
 				A8DC1DE921D5DDB1008AA259 /* ColorService.swift */,
 				A8DC1DF521D85E5D008AA259 /* Dao.swift */,
+				A82384C821F98BB900520478 /* FAQ.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 			children = (
 				A8E8C2B32197E7BE008BE11F /* WebService.swift */,
 				A8E8C31B21BDBB97008BE11F /* PayrollService.swift */,
+				A82384CA21F98C9B00520478 /* FAQService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -547,6 +553,9 @@
 				A8E8C2B62197EC81008BE11F /* Payroll.swift in Sources */,
 				A8E8C2AA2197D9CC008BE11F /* RootVC.swift in Sources */,
 				A82384B921EC1D3600520478 /* NavigationControllerExtension.swift in Sources */,
+				A82384CB21F98C9B00520478 /* FAQService.swift in Sources */,
+				A82384C921F98BB900520478 /* FAQ.swift in Sources */,
+				A82384CE2204082900520478 /* InfoVC.swift in Sources */,
 				A8DC1DF621D85E5D008AA259 /* Dao.swift in Sources */,
 				A82384AF21E2A6B200520478 /* ColorExtension.swift in Sources */,
 				A8DC1DEA21D5DDB1008AA259 /* ColorService.swift in Sources */,
@@ -554,7 +563,6 @@
 				A8A4CA4121C72F3F00539BBE /* RootCell.swift in Sources */,
 				A8DC1DEE21D5E4B0008AA259 /* ThemeVC.swift in Sources */,
 				A8DC1DE021D48B25008AA259 /* Color.swift in Sources */,
-				A82384C721EECB2800520478 /* FAQVC.swift in Sources */,
 				A8E8C2CC21A52375008BE11F /* Alert.swift in Sources */,
 				A8E8C2AD2197E074008BE11F /* Response.swift in Sources */,
 				A8E8C2B92198DFCC008BE11F /* PayrollStore.swift in Sources */,
