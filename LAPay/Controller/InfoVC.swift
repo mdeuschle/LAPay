@@ -11,14 +11,19 @@ import UIKit
 class InfoVC: UITableViewController {
     
     let faqs = FAQService.shared.all
+    private var color: Color?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        title = "FAQs"
+        view.backgroundColor = color?.base
+        tableView.backgroundColor = color?.base
     }
     
-    init() {
+    init(color: Color?) {
         super.init(style: .plain)
+        self.color = color
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,6 +37,9 @@ class InfoVC: UITableViewController {
     private func configureTableView() {
         let nib = UINib(nibName: "FAQCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FAQCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 98
+        tableView.separatorStyle = .none
     }
     
     // MARK: - Table view data source
@@ -46,7 +54,7 @@ class InfoVC: UITableViewController {
                                                         return UITableViewCell()
         }
         let faq = faqs[indexPath.row]
-        cell.configure(with: faq)
+        cell.configure(with: faq, color: color)
         return cell
     }
 }

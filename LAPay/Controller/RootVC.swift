@@ -72,8 +72,7 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     
     @objc private func infoButtonTapped() {
-        print("TAP")
-        let infoVC = InfoVC()
+        let infoVC = InfoVC(color: color)
         navigationController?.pushViewController(infoVC, animated: true)
     }
     

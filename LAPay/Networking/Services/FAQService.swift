@@ -14,6 +14,28 @@ struct FAQService {
     var all = [
         FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
             answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using?",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0"),
+        FAQ(question: "What vesion of LAPay am I using?",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text"),
+        FAQ(question: "What vesion of LAPay am I using? This is extra data to test the length of the question",
+            answer: "You are using version 1.0. How much does it matter that this is a long text")
     ]
     
 }

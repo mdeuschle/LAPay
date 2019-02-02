@@ -12,15 +12,20 @@ class FAQCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
-        
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Initialization code
+        titleLabel.numberOfLines = 0
+        detailLabel.numberOfLines = 0
+        selectionStyle = .none
     }
     
-    func configure(with faq: FAQ) {
+    func configure(with faq: FAQ, color: Color?) {
+        let color = color?.base ?? .black
         titleLabel.text = faq.question
         detailLabel.text = faq.answer
+        titleLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: color, isFlat: true)
+        detailLabel.textColor = UIColor(contrastingBlackOrWhiteColorOn: color, isFlat: true)
+        backgroundColor = color
     }
 }
