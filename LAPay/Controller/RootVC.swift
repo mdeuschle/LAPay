@@ -72,7 +72,7 @@ class RootVC: UIViewController, ThemeDelegate {
     }
     
     @objc private func infoButtonTapped() {
-        let infoVC = InfoVC(color: color)
+        let infoVC = InfoVC(color: color, payroll: payrolls.first)
         navigationController?.pushViewController(infoVC, animated: true)
     }
     

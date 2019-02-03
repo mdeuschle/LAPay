@@ -10,18 +10,20 @@ import UIKit
 
 class InfoVC: UITableViewController {
     
-    let faqs = FAQService.shared.all
     private var color: Color?
+    private var faqService: FAQService
+    private var faqs = [FAQ]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         title = "FAQs"
         view.backgroundColor = color?.base
-        tableView.backgroundColor = color?.base
+        faqs = faqService.getFAQs()
     }
     
-    init(color: Color?) {
+    init(color: Color?, payroll: Payroll?) {
+        faqService = FAQService(year: payroll?.year ?? "")
         super.init(style: .plain)
         self.color = color
     }
@@ -40,6 +42,7 @@ class InfoVC: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 98
         tableView.separatorStyle = .none
+        tableView.backgroundColor = color?.base
     }
     
     // MARK: - Table view data source
