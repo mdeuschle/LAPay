@@ -12,6 +12,7 @@ protocol ThemeDelegate: AnyObject {
 
 import UIKit
 import ChameleonFramework
+import StoreKit
 
 class ThemeVC: UITableViewController {
     
@@ -21,6 +22,9 @@ class ThemeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        if #available( iOS 10.3,*){
+            SKStoreReviewController.requestReview()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

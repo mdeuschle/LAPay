@@ -58,7 +58,6 @@ class InfoVC: UITableViewController {
         }
         let faq = faqs[indexPath.row]
         cell.configure(with: faq, color: color)
-        cell.detailTextView.isSelectable = true
         return cell
     }
 }
